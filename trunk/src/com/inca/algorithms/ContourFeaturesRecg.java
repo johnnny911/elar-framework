@@ -13,8 +13,8 @@ import java.util.Scanner;
  * Inca P.O.C.
  *
  * ContourFeaturesRecg.java - 
- * for a symbol over the sample space. Adaptation of a back propagation 
- * neural network, from "Algorithms for Image Processing and Computer Vision", 
+ * for a symbol over the sample space. Adaptation of a Contour Feature 
+ * algorithm, from "Algorithms for Image Processing and Computer Vision", 
  * J.R.Parker, 2010
     Copyright (C) 2011	James Neilan
 
@@ -31,7 +31,7 @@ import java.util.Scanner;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ContourFeaturesRecg {
+public class ContourFeaturesRecg implements Runnable{
 	private int database[][];
 	private int dbv[];
 	private int dbSize;
@@ -566,6 +566,12 @@ public class ContourFeaturesRecg {
 	public int getSymbol(){
 		return this.symbol;
 	}//end getSymbol method
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}//end run method
 	/**
 	 * Main method used for regression testing.
 	 * @param args

@@ -29,7 +29,7 @@ import com.googlecode.javacv.cpp.opencv_core.IplImage;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class BPNNetRecg {
+public class BPNNetRecg implements Runnable{
 	private double database[];
 	private int numberOfInputs = 0;
 	private int numberOfHidden = 0;
@@ -102,13 +102,6 @@ public class BPNNetRecg {
 	/**
 	 * 
 	 * @param fileName
-	 */
-	public void populateDatabase(String fileName){
-		
-	}//end populateDatabase method
-	/**
-	 * 
-	 * @param fileName
 	 * @throws Exception
 	 */
 	public String recognizeSymbol(String fileName)throws Exception{
@@ -124,6 +117,7 @@ public class BPNNetRecg {
 		computeAllHidden();
 		computeAllOutputs();
 		guess = ""+outputResults2();
+		//outputResults();
 		
 		in.close();
 		return guess;
@@ -402,9 +396,15 @@ public class BPNNetRecg {
 		this.numberOfOutputs = numOut;
 	}
 	
-	public void populateDatabase()throws Exception{
-		this.trainNet("datapc1");
-	}
+	public void populateDatabase(String fileName)throws Exception{
+		this.trainNet(fileName);
+	}//end populateDatabase method
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}//end run method
 	/**
 	 * Main method used for regression testing.
 	 * @param args
@@ -413,9 +413,8 @@ public class BPNNetRecg {
 	public static void main(String[] args){
 		BPNNetRecg test = new BPNNetRecg(48, 96, 10);
 		try {
-			test.trainNet("datapc1");
-			//test.setNumOutputs(1);
-			test.recognizeSymbol("nnDataOut");
+			test.populateDatabase("datapc1");
+			test.recognizeSymbol("unknown1.png");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
