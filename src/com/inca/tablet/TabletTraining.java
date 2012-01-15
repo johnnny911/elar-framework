@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -64,6 +65,8 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	private JButton recog = new JButton("Recog");
 	private JLabel label = new JLabel("Annotation:");
 	private JTextField text = new JTextField("(enter name)");
+	private JLabel countval = new JLabel(" 0 ");
+	private JCheckBox incrLrn = new JCheckBox("IncrLrn");
 	private BufferedImage bi = null;
 	private Graphics2D g2d = null, g2d2 = null;
 	private Point2D.Float prevLoc = null;// previous cursor location
@@ -91,7 +94,10 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 		panel.add(recog);
 		panel.add(label);
 		panel.add(text);
+		panel.add(countval);
+		panel.add(incrLrn);
 		
+		incrLrn.addActionListener((ActionListener) this);
 		save.addActionListener((ActionListener) this);
 		delete.addActionListener((ActionListener) this);
 		recog.addActionListener((ActionListener) this);
@@ -185,6 +191,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equalsIgnoreCase("Save")){
 			countSaves += 1;
+			countval.setText(" " + countSaves + " ");
 			createImage(bi);
 			bi = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 			g2d2 = bi.createGraphics();
@@ -210,9 +217,13 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 			panel.paint(g2d);
 			convertUnknownImage();
 			
-			//recognize symbol
-			IncaDecision run = new IncaDecision(text.getText()+".png");
-			run.getIncaResult();
+			//recognize symbol, check for user feedback option
+			if(incrLrn.isSelected()){
+				IncaDecision run = new IncaDecision(text.getText(), true);
+			}else{
+				IncaDecision run = new IncaDecision(text.getText(), false);
+				run.getIncaResult();	
+			}//end incremental learning check
 		}
 	}//end actionPerformed method
 	/**

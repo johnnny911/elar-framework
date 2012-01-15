@@ -15,10 +15,8 @@ import static com.googlecode.javacv.cpp.opencv_imgproc.*;
  * @version	1.0.0
  * Inca P.O.C.
  *
- * KNearestNRecg.java - 
- * for a symbol over the sample space. Adaptation of a back propagation 
- * neural network, from "Algorithms for Image Processing and Computer Vision", 
- * J.R.Parker, 2010
+ * KNearestNRecg.java - Adapted from Demiles, 
+ * http://blog.damiles.com/category/tutorials/opencv-tutorials/
     Copyright (C) 2011	James Neilan
 
     This program is free software: you can redistribute it and/or modify
@@ -34,7 +32,7 @@ import static com.googlecode.javacv.cpp.opencv_imgproc.*;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class KNearestNRecg {
+public class KNearestNRecg implements Runnable{
 	private int numTrnSamples;
 	private int numCategories;
 	private CvMat trainingData;
@@ -62,7 +60,9 @@ public class KNearestNRecg {
 		trainingCategories = cvCreateMat(numTrnSamples * numCategories, 1,
 																CV_32FC1);
 	}//end KNearestNRecg constructor
-	
+	/**
+	 * 
+	 */
 	public KNearestNRecg(){
 		setTrainingSamples(DEFAULT_TRAIN_SIZE);
 		setCategories(DEFAULT_NUM_CAT);
@@ -218,8 +218,10 @@ public class KNearestNRecg {
 		CvMat row1 = new CvMat();
 		row1 = cvReshape(data, rowHeader, 0, 1);
 		
+		//find closest match
 		result = knn.find_nearest(row1, K, null, null, nearest, null);
 		cvSave("test.xml", row1);
+		
 		int accuracy = 0;
 		for(int i = 0; i < K; i++){
 			if(nearest.get(i) == result){
@@ -258,7 +260,7 @@ public class KNearestNRecg {
 		IplImage sourceImage = IplImage.create(500, 500, IPL_DEPTH_8U, 1);
 		IplImage parseImage;
 		String fileName;
-		String path = "d:\\Programming\\INCA_Training\\Tablet\\";
+		String path = "d:\\Programming\\INCA\\ELAR\\dataset\\";
 		CvMat row = new CvMat();
 		CvMat data = new CvMat();
 		//get images for each class
@@ -292,7 +294,9 @@ public class KNearestNRecg {
 		}
 		//System.out.println("Data Processed");
 	}//end method getData
-	
+	/**
+	 * 
+	 */
 	public void populateDatabase(){
 		this.getData();
 		this.train();
@@ -304,7 +308,6 @@ public class KNearestNRecg {
 	private void train(){
 		//System.out.println("Training K-Nearest Neighbors...Please Wait");
 		knn = new CvKNearest(trainingData, trainingCategories, null, false, K);
-		cvSave("training.xml", trainingData);
 		//System.out.println("Training Completed");
 	}//end train method
 	/**
@@ -335,6 +338,12 @@ public class KNearestNRecg {
 	public int getNumCategories(){
 		return this.numCategories;
 	}//end getNumCategories method
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}//end run method
 	/**
 	 * Main method for regression testing.
 	 * @param args

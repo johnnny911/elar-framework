@@ -1,14 +1,17 @@
 //PerformanceMatrix.java
 package com.inca.main;
 import java.lang.reflect.Array;
+
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
+import static com.googlecode.javacv.cpp.opencv_core.*;
 /**
  * 
  * @author James Neilan
- * @version	1.0.0
- * Inca-Framework
+ * @version	1.1.0
+ * Inca-POC
  *
  * PerformanceMatrix.java - Object that contains the performance past
- * of a given algorithm in the Inca Framework.
+ * of a given algorithm in the Inca POC.
  * for a symbol over the sample space.
     Copyright (C) 2011	James Neilan
 
@@ -28,17 +31,17 @@ import java.lang.reflect.Array;
 
 public class PerformanceMatrix {
 	private String name;
-	private int [][] pm;
-	private static int DSIZE = 10;
+	private CvMat pm;
 	
 	/**
-	 * Constructor. Accetps the string name and size of the performance
+	 * Constructor. Accepts the string name and size of the performance
 	 * matrix.
 	 * @param algName	String name of matrix
 	 */
 	public PerformanceMatrix(String algName, int size){
-		this.pm = new int[size][size];
+		this.pm = CvMat.create(size, size);
 		this.name = algName;
+		this.getDatabase(algName+".xml");
 	}//end constructor method
 	/**
 	 * Returns the string value of the name of the matrix.
@@ -53,7 +56,7 @@ public class PerformanceMatrix {
 	 * @param col	integer column
 	 */
 	public void recordRecNum(int row, int col){
-		pm[row][col] += 1;
+		pm.put(row,col, (pm.get(row,col)+1));
 	}//end recordRecNum method
 	/**
 	 * Returns the integer value at position row,col.
@@ -62,7 +65,7 @@ public class PerformanceMatrix {
 	 * @return		integer value at r,c
 	 */
 	public int getRecNum(int row, int col){
-		return pm[row][col];
+		return (int) pm.get(row,col);
 	}//end getRecNum method
 	/**
 	 * From http://www.source-code.biz/snippets/java/3.htm
@@ -70,6 +73,7 @@ public class PerformanceMatrix {
 	 * @param newSize	integer value of size to increase
 	 * @return Object	new performance matrix sized to newSize
 	 */
+	/*
 	private static Object resizeArray(Object oldArray, int newSize){
 		int oldSize = Array.getLength(oldArray);
 		Class elementType = oldArray.getClass().getComponentType();
@@ -80,11 +84,13 @@ public class PerformanceMatrix {
 		}
 		return newArray;
 	}//end resizeArray method
+	*/
 	/**
 	 * From http://www.source-code.biz/snippets/java/3.htm.
 	 * Resizes the multi-dimensional array.
 	 * @param increase	integer value to increase size.
 	 */
+	/*
 	public void resize(int increase){
 		//resize rows
 		pm = (int [][])resizeArray(pm, increase);
@@ -93,19 +99,20 @@ public class PerformanceMatrix {
 			pm[i] = (int[])resizeArray(pm[i], increase);
 		}
 	}//end resize method
+	*/
 	/**
 	 * Returns the integer size of the performance matrix.
 	 * @return	length		integer length
 	 */
 	public int getSize(){
-		return pm.length;
+		return pm.rows();
 	}///end getSize method
 	
 	public void getDatabase(String fileName){
-		
+		pm = new CvMat(cvLoad(fileName));
 	}//end getDatabase method
 	
 	public void saveDatabase(String fileName){
-		
+		cvSave(fileName, pm);
 	}//end saveDatabase method
 }//end PerformanceMatrix class

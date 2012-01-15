@@ -66,15 +66,15 @@ public class AlgorithmAdaptor {
 		switch(cast){
 		case 0:
 			((ContourFeaturesRecg)algorithm).populateDatabase("prof.db", 1000, 50);
-			guess = ((ContourFeaturesRecg)algorithm).recognizeSymbol(unknownSymbol);
+			guess = ((ContourFeaturesRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
 			break;
 		case 1:
-			((BPNNetRecg)algorithm).populateDatabase();
-			guess = ((BPNNetRecg)algorithm).recognizeSymbol(unknownSymbol);
+			((BPNNetRecg)algorithm).populateDatabase("nnDatabase");
+			guess = ((BPNNetRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
 			break;
 		case 2:
 			((KNearestNRecg)algorithm).populateDatabase();
-			guess = ((KNearestNRecg)algorithm).recognizeSymbol(unknownSymbol);
+			guess = ((KNearestNRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
 			break;
 		default:
 			throw (new Exception("Algorithm not found or not in adaptor."));

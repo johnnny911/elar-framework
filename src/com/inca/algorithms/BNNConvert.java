@@ -99,9 +99,9 @@ public class BNNConvert {
 		mods = normalize();
 		//bounds the symbol - resizes image (min size)
 		mods2 = bBox(mods);
-		//
-		nnImage = scaleDown(mods2, 8, 6);
 		//createNamedWindow(mods2, "Scaled");
+		nnImage = scaleDown(mods2, 8, 6);
+		//createNamedWindow(mods, "Scaled");
 		writeOutputFile(nnImage);
 	}//end convertImage method
 	/**
@@ -259,7 +259,7 @@ public class BNNConvert {
 				}
 				accum = accum / area;
 				if(accum > 255.0){
-					System.out.println(accum+"at"+i+j);
+					//System.out.println(accum+"at"+i+j);
 				}
 				scalar.setVal(0, accum+0.5);
 				cvSet2D(reImage, i, j, scalar);
@@ -300,6 +300,52 @@ public class BNNConvert {
 		out.close();
 		stream.close();
 	}//end writeOutputFile method
+	
+	public void createDatabase(String imageFile, int numCat)throws Exception{
+		String path = "d:\\Programming\\INCA\\ELAR\\dataset\\";
+		im = cvLoadImage(path+imageFile);
+		IplImage mods = new IplImage();
+		IplImage mods2 = new IplImage();
+		IplImage nnImage = new IplImage();
+		//normalizes pixel values - converts grey levels to 0-255
+		mods = normalize();
+		//bounds the symbol - resizes image (min size)
+		mods2 = bBox(mods);
+		nnImage = scaleDown(mods2, 8, 6);
+		//createNamedWindow(mods, "Scaled");
+		writeOutputFile2(nnImage, numCat);
+	}
+	
+	private void writeOutputFile2(IplImage outImage, int numCat) throws Exception{
+		FileWriter stream = new FileWriter("nnDatabase", true);
+		BufferedWriter out = new BufferedWriter(stream);
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 6; j++){
+				out.write(String.format("%.3f ",
+						(double)cvGet2D(outImage, i, j).getVal(0)/255.0));
+			}
+			if(i == 7){
+				out.write("" + numCat + " ");
+			}
+			out.write("\n");
+		}
+		out.close();
+		stream.close();
+	}//end writeOutputFile method
+	
+	private static String getPrefixName(int i){
+		if(i == 0) return "zero";
+		if(i == 1) return "one";
+		if(i == 2) return "two";
+		if(i == 3) return "three";
+		if(i == 4) return "four";
+		if(i == 5) return "five";
+		if(i == 6) return "six";
+		if(i == 7) return "seven";
+		if(i == 8) return "eight";
+		if(i == 9) return "nine";
+		return "null";
+	}//end getPrefixName method
 	/**
 	 * Main for regression testing
 	 * @param args
@@ -308,10 +354,29 @@ public class BNNConvert {
 	public static void main(String[] args){
 		BNNConvert test = new BNNConvert(new IplImage());
 		try{
-			test.setupImageFile("dig6.pbm");
-			test.createNamedWindow("NN");
+			//test.setupImageFile("dig1.pbm");
+			//test.createNamedWindow("NN");
 			//test.setOutputFile("nnDataout.txt");
-			test.convertImage();
+			//test.convertImage();
+			
+			for(int numInst = 1; numInst < 52; numInst++){
+				System.out.println("Instance: " + numInst);
+				for(int numCat = 0; numCat < 10; numCat++){
+					test.createDatabase(getPrefixName(numCat)+(numInst)+".png",
+							numCat);
+					
+				}
+			}
+			
+			
+			for(int numCat = 1; numCat < 10; numCat++){
+				System.out.println("cat: " + numCat);
+				for(int numInst = 30; numInst < 52; numInst++){
+					test.createDatabase(getPrefixName(numCat)+(numInst)+".png",
+							numCat);
+					
+				}
+			}
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
