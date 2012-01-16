@@ -3,6 +3,7 @@ package com.inca.main;
 import com.inca.algorithms.BPNNetRecg;
 import com.inca.algorithms.ContourFeaturesRecg;
 import com.inca.algorithms.KNearestNRecg;
+import com.inca.algorithms.*;
 /**
  * 
  * @author James Neilan
@@ -27,32 +28,13 @@ import com.inca.algorithms.KNearestNRecg;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class AlgorithmAdaptor {
-	private Object algorithm;
-	private int cast;
-	
+	private Algorithm algorithm;
 	/**
 	 * 
 	 * @param algorithm
 	 */
-	public AlgorithmAdaptor(ContourFeaturesRecg algorithm){
+	public AlgorithmAdaptor(Algorithm algorithm){
 		this.algorithm = algorithm;
-		this.cast = 0;
-	}//end AlgorithmAdaptor constructor
-	/**
-	 * 
-	 * @param algorithm
-	 */
-	public AlgorithmAdaptor(BPNNetRecg algorithm){
-		this.algorithm = algorithm;
-		this.cast = 1;
-	}//end AlgorithmAdaptor constructor
-	/**
-	 * 
-	 * @param algorithm
-	 */
-	public AlgorithmAdaptor(KNearestNRecg algorithm){
-		this.algorithm = algorithm;
-		this.cast = 2;
 	}//end AlgorithmAdaptor constructor
 	/**
 	 * 
@@ -61,25 +43,7 @@ public class AlgorithmAdaptor {
 	 * @throws Exception
 	 */
 	public String recognizeSymbol(String unknownSymbol)throws Exception{
-		String guess = null;
-		
-		switch(cast){
-		case 0:
-			((ContourFeaturesRecg)algorithm).populateDatabase("prof.db", 1000, 50);
-			guess = ((ContourFeaturesRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
-			break;
-		case 1:
-			((BPNNetRecg)algorithm).populateDatabase("nnDatabase");
-			guess = ((BPNNetRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
-			break;
-		case 2:
-			((KNearestNRecg)algorithm).populateDatabase();
-			guess = ((KNearestNRecg)algorithm).recognizeSymbol(unknownSymbol+".png");
-			break;
-		default:
-			throw (new Exception("Algorithm not found or not in adaptor."));
-		}
-		
-		return guess;
+		algorithm.populateDatabase();
+		return algorithm.recognizeSymbol(unknownSymbol);
 	}//end recognizeSymbol method
 }//end AlgorithmAdapter class
