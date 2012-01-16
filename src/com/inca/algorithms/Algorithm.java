@@ -3,9 +3,6 @@ package com.inca.algorithms;
 public abstract class Algorithm {
 	public Algorithm(){}
 	
-	String recognizeSymbol() {
-		return null;
-	}
-	void populateDatabase() {
-	}
+	public abstract String recognizeSymbol(String file) throws Exception;
+	public abstract void populateDatabase() throws Exception;
 }//end AlgorithmClass

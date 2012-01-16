@@ -29,7 +29,7 @@ import com.googlecode.javacv.cpp.opencv_core.IplImage;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class BPNNetRecg implements Runnable{
+public class BPNNetRecg extends Algorithm {
 	private double database[];
 	private int numberOfInputs = 0;
 	private int numberOfHidden = 0;
@@ -51,7 +51,7 @@ public class BPNNetRecg implements Runnable{
 	private static final int DEFAULT_HIDDEN = 96;
 	private static final int DEFAULT_OUT = 10;
 	private static final String DEFAULT_DATA_OUT = "nnDataOut";
-	private static final String PATH = "d:\\Programming\\INCA\\ELAR\\unknownset\\";
+	private static final String PATH = "unknownset\\";
 	
 	/**
 	 * 
@@ -102,6 +102,13 @@ public class BPNNetRecg implements Runnable{
 	/**
 	 * 
 	 * @param fileName
+	 */
+	public void populateDatabase(String fileName){
+		
+	}//end populateDatabase method
+	/**
+	 * 
+	 * @param fileName
 	 * @throws Exception
 	 */
 	public String recognizeSymbol(String fileName)throws Exception{
@@ -117,7 +124,6 @@ public class BPNNetRecg implements Runnable{
 		computeAllHidden();
 		computeAllOutputs();
 		guess = ""+outputResults2();
-		//outputResults();
 		
 		in.close();
 		return guess;
@@ -396,15 +402,9 @@ public class BPNNetRecg implements Runnable{
 		this.numberOfOutputs = numOut;
 	}
 	
-	public void populateDatabase(String fileName)throws Exception{
-		this.trainNet(fileName);
-	}//end populateDatabase method
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}//end run method
+	public void populateDatabase()throws Exception{
+		this.trainNet("datapc1");
+	}
 	/**
 	 * Main method used for regression testing.
 	 * @param args
@@ -413,8 +413,9 @@ public class BPNNetRecg implements Runnable{
 	public static void main(String[] args){
 		BPNNetRecg test = new BPNNetRecg(48, 96, 10);
 		try {
-			test.populateDatabase("datapc1");
-			test.recognizeSymbol("unknown1.png");
+			test.trainNet("datapc1");
+			//test.setNumOutputs(1);
+			test.recognizeSymbol("nnDataOut");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

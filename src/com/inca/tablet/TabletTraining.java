@@ -231,7 +231,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	 * @param bi
 	 */
 	private void createImage(BufferedImage bi) { 	    
-		File file = new File("d:\\Programming\\INCA\\ELAR\\dataset\\image" + countSaves + ".png");
+		File file = new File("dataset\\image" + countSaves + ".png");
 	    try {
 			ImageIO.write(bi, "png", file);
 		} catch (IOException e) {
@@ -241,7 +241,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	} //end createImage method
 	
 	private void createUnknownImage(BufferedImage bi) { 	    
-		File file = new File("d:\\Programming\\INCA\\ELAR\\unknownset\\image.png");
+		File file = new File("unknownset\\image.png");
 	    try {
 			ImageIO.write(bi, "png", file);
 		} catch (IOException e) {
@@ -257,7 +257,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 		BufferedImage image = null;
 		BufferedImage image2 = null;
 		try {
-			image = ImageIO.read(new File("d:\\Programming\\INCA\\ELAR\\dataset\\image"+countSaves+".png"));
+			image = ImageIO.read(new File("dataset\\image"+countSaves+".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,7 +277,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 			}
 		}//end convert color
 		
-		File file = new File("d:\\Programming\\INCA\\ELAR\\dataset\\"+text.getText()+countSaves+".png");
+		File file = new File("dataset\\"+text.getText()+countSaves+".png");
 	    
 		try {
 			ImageIO.write(image2, "png", file);
@@ -292,7 +292,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 		BufferedImage image = null;
 		BufferedImage image2 = null;
 		try {
-			image = ImageIO.read(new File("d:\\Programming\\INCA\\ELAR\\unknownset\\image.png"));
+			image = ImageIO.read(new File("unknownset\\image.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -312,7 +312,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 			}
 		}//end convert color
 		
-		File file = new File("d:\\Programming\\INCA\\ELAR\\unknownset\\"+text.getText()+".png");
+		File file = new File("unknownset\\"+text.getText()+".png");
 	    
 		try {
 			ImageIO.write(image2, "png", file);
@@ -324,7 +324,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	}//end convertImage method
 	
 	private void deleteImageFile(String fileName){
-		File file = new File("d:\\Programming\\INCA\\ELAR\\unknownset\\"+fileName);
+		File file = new File("unknownset\\"+fileName);
 		file.delete();
 	}//end deleteImageFile method
 	

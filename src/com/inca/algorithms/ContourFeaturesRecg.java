@@ -13,8 +13,8 @@ import java.util.Scanner;
  * Inca P.O.C.
  *
  * ContourFeaturesRecg.java - 
- * for a symbol over the sample space. Adaptation of a Contour Feature 
- * algorithm, from "Algorithms for Image Processing and Computer Vision", 
+ * for a symbol over the sample space. Adaptation of a back propagation 
+ * neural network, from "Algorithms for Image Processing and Computer Vision", 
  * J.R.Parker, 2010
     Copyright (C) 2011	James Neilan
 
@@ -31,18 +31,22 @@ import java.util.Scanner;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-public class ContourFeaturesRecg implements Runnable{
+public class ContourFeaturesRecg extends Algorithm {
 	private int database[][];
 	private int dbv[];
 	private int dbSize;
 	private int symbol;
-	private static final String PATH = "d:\\Programming\\INCA\\ELAR\\unknownset\\";
+	private String datafile;
+	private int x, y;
+	private static final String PATH = "unknownset\\";
 	
 	/**
 	 * 
 	 */
-	public ContourFeaturesRecg(){
-		
+	public ContourFeaturesRecg(String datafile, int x, int y){
+		this.datafile = datafile;
+		this.x = x;
+		this.y = y;
 	}//end CountourFeaturesRecg method
 	/**
 	 * 
@@ -526,12 +530,11 @@ public class ContourFeaturesRecg implements Runnable{
 	 * @param sizeY
 	 * @throws Exception
 	 */
-	public void populateDatabase(String dataFile, int sizeX, int sizeY) 
-														throws Exception{
-		database = new int[sizeX][sizeY];
-		dbv = new int [sizeX];
+	public void populateDatabase() throws Exception{
+		database = new int[x][y];
+		dbv = new int [x];
 		int k;
-		File inFile = new File(dataFile);
+		File inFile = new File(datafile);
 		Scanner in = new Scanner(inFile);
 		String line = null;
 		
@@ -556,7 +559,7 @@ public class ContourFeaturesRecg implements Runnable{
 		  }
 		  
 		}
-		this.dbSize = sizeX;
+		this.dbSize = x;
 		in.close();
 	}//end populateDatabase method
 	/**
@@ -566,12 +569,6 @@ public class ContourFeaturesRecg implements Runnable{
 	public int getSymbol(){
 		return this.symbol;
 	}//end getSymbol method
-	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}//end run method
 	/**
 	 * Main method used for regression testing.
 	 * @param args
