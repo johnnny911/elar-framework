@@ -268,7 +268,7 @@ public class KNearestNRecg extends Algorithm {
 			for(int j = 0; j < getTrainingSamples(); j++){
 				//get image in directories
 				fileName = getPrefixName(i);			
-				sourceImage = cvLoadImage(""+fileName+""+(i+1)+".png");
+				sourceImage = cvLoadImage(""+path+fileName+""+(i+1)+".png");
 				if(sourceImage == null){
 					System.out.println("Null Image");
 				}

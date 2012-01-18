@@ -537,36 +537,37 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @param sizeY
 	 * @throws Exception
 	 */
-	public void populateDatabase() throws Exception{
-		database = new int[x][y];
-		dbv = new int [x];
+	public void populateDatabase(String dataFile, int sizeX, int sizeY) 
+	throws Exception{
+		database = new int[sizeX][sizeY];
+		dbv = new int [sizeX];
 		int k;
-		File inFile = new File(datafile);
+		File inFile = new File(dataFile);
 		Scanner in = new Scanner(inFile);
 		String line = null;
 		
 		for (int i=0; i<1000; i++)
 		{
-		  if(in.hasNext()){
-			  line = in.next();
-			  dbv[i] = Integer.parseInt(line);
-
-			  line = in.next();
-			  for (int j=0; j<48; j++)
-			  {
-			    k = Integer.parseInt(Character.toString(line.charAt(j)));
-			    if( k == 1){
-			    	database[i][j] = 1;
-			    }else{
-			    	database[i][j] = 0;
-			    }
-			  }
-		  }else{
-			  break;
-		  }
-		  
+			if(in.hasNext()){
+				line = in.next();
+				dbv[i] = Integer.parseInt(line);
+		
+				line = in.next();
+				for (int j=0; j<48; j++)
+				{
+					k = Integer.parseInt(Character.toString(line.charAt(j)));
+					if( k == 1){
+						database[i][j] = 1;
+					}else{
+						database[i][j] = 0;
+					}
+				}
+			}else{
+				break;
+			}
+		
 		}
-		this.dbSize = x;
+		this.dbSize = sizeX;
 		in.close();
 	}//end populateDatabase method
 	/**
@@ -592,4 +593,10 @@ public class ContourFeaturesRecg extends Algorithm {
 		}
 	}//end main method
 	*/
+
+	@Override
+	public void populateDatabase() throws Exception {
+		// TODO Auto-generated method stub
+		populateDatabase("prof.db", 1000, 50);
+	}
 }//end ContourFeatruesRecg class
