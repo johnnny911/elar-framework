@@ -302,7 +302,7 @@ public class BNNConvert {
 	}//end writeOutputFile method
 	
 	public void createDatabase(String imageFile, int numCat)throws Exception{
-		String path = "d:\\Programming\\INCA\\ELAR\\dataset\\";
+		String path = "dataset\\";
 		im = cvLoadImage(path+imageFile);
 		IplImage mods = new IplImage();
 		IplImage mods2 = new IplImage();
