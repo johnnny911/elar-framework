@@ -102,13 +102,6 @@ public class BPNNetRecg extends Algorithm {
 	/**
 	 * 
 	 * @param fileName
-	 */
-	public void populateDatabase(String fileName){
-		
-	}//end populateDatabase method
-	/**
-	 * 
-	 * @param fileName
 	 * @throws Exception
 	 */
 	public String recognizeSymbol(String fileName)throws Exception{

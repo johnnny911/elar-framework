@@ -15,10 +15,8 @@ import static com.googlecode.javacv.cpp.opencv_imgproc.*;
  * @version	1.0.0
  * Inca P.O.C.
  *
- * KNearestNRecg.java - 
- * for a symbol over the sample space. Adaptation of a back propagation 
- * neural network, from "Algorithms for Image Processing and Computer Vision", 
- * J.R.Parker, 2010
+ * KNearestNRecg.java - Adapted from Demiles, 
+ * http://blog.damiles.com/category/tutorials/opencv-tutorials/
     Copyright (C) 2011	James Neilan
 
     This program is free software: you can redistribute it and/or modify
@@ -62,7 +60,9 @@ public class KNearestNRecg extends Algorithm {
 		trainingCategories = cvCreateMat(numTrnSamples * numCategories, 1,
 																CV_32FC1);
 	}//end KNearestNRecg constructor
-	
+	/**
+	 * 
+	 */
 	public KNearestNRecg(){
 		setTrainingSamples(DEFAULT_TRAIN_SIZE);
 		setCategories(DEFAULT_NUM_CAT);
@@ -218,8 +218,9 @@ public class KNearestNRecg extends Algorithm {
 		CvMat row1 = new CvMat();
 		row1 = cvReshape(data, rowHeader, 0, 1);
 		
+		//find closest match
 		result = knn.find_nearest(row1, K, null, null, nearest, null);
-		cvSave("test.xml", row1);
+		
 		int accuracy = 0;
 		for(int i = 0; i < K; i++){
 			if(nearest.get(i) == result){
@@ -256,9 +257,9 @@ public class KNearestNRecg extends Algorithm {
 	 */
 	private void getData(){
 		IplImage sourceImage = IplImage.create(500, 500, IPL_DEPTH_8U, 1);
-		IplImage parseImage;
+		IplImage parseImage = null;
 		String fileName;
-		String path = "d:\\Programming\\INCA_Training\\Tablet\\";
+		String path = "dataset\\";
 		CvMat row = new CvMat();
 		CvMat data = new CvMat();
 		//get images for each class
@@ -292,7 +293,9 @@ public class KNearestNRecg extends Algorithm {
 		}
 		//System.out.println("Data Processed");
 	}//end method getData
-	
+	/**
+	 * 
+	 */
 	public void populateDatabase(){
 		this.getData();
 		this.train();
@@ -304,8 +307,7 @@ public class KNearestNRecg extends Algorithm {
 	private void train(){
 		//System.out.println("Training K-Nearest Neighbors...Please Wait");
 		knn = new CvKNearest(trainingData, trainingCategories, null, false, K);
-		cvSave("training.xml", trainingData);
-		//System.out.println("Training Completed");
+		//cvSave("training.xml", trainingData);
 	}//end train method
 	/**
 	 * 
@@ -341,16 +343,34 @@ public class KNearestNRecg extends Algorithm {
 	 */
 	/*
 	public static void main(String[] args){
-		int numSamples = 10;
+		int numSamples = 51;
 		int numCategories = 10;
-		int sz = 50;
-		
+		int sz = 100;
+		/*
 		KNearestNRecg test = new KNearestNRecg(numSamples, numCategories, sz);
 		test.getData();
 		test.train();
-		test.recognizeSymbol("unknown1.png");
-		//test.test("unknown1.png");
-		//test.test("unknown1.png");
+		
+		Alphabet symboltable = new Alphabet(numCategories);
+		for(int i = 0; i < numCategories; i++){
+			symboltable.addSymbol(test.getPrefixName(i), new Integer(i));
+		}
+		PerformanceMatrix pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
+		
+		for(int i = 0; i < 3; i++){
+			for(int numInst = 1; numInst < 11; numInst++){
+			System.out.println("Instance: " + numInst);
+				for(int numCat = 0; numCat < 10; numCat++){
+					String guess = test.recognizeSymbol(test.getPrefixName(numCat)+
+							(numInst)+".png");
+					System.out.println(guess);
+					new IncaDecision(test.getPrefixName(numCat)+
+							(numInst), false).updatePM(pm2, guess);
+					pm2.saveDatabase(pm2.getName()+".xml");
+				}
+			}
+		}*
+		new IncaDecision().outputPMs("KNN");
 	}//end main method
 	*/
 }//end KNearestNRecg class

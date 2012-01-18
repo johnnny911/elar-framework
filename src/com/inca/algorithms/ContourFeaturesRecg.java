@@ -12,9 +12,9 @@ import java.util.Scanner;
  * @version	1.0.0
  * Inca P.O.C.
  *
- * ContourFeaturesRecg.java - 
- * for a symbol over the sample space. Adaptation of a back propagation 
- * neural network, from "Algorithms for Image Processing and Computer Vision", 
+  * ContourFeaturesRecg.java - 
+ * for a symbol over the sample space. Adaptation of a Contour Feature 
+ * algorithm, from "Algorithms for Image Processing and Computer Vision", 
  * J.R.Parker, 2010
     Copyright (C) 2011	James Neilan
 
@@ -47,6 +47,13 @@ public class ContourFeaturesRecg extends Algorithm {
 		this.datafile = datafile;
 		this.x = x;
 		this.y = y;
+	}//end CountourFeaturesRecg method
+	
+	/**
+	 * 
+	 */
+	public ContourFeaturesRecg(){
+		
 	}//end CountourFeaturesRecg method
 	/**
 	 * 

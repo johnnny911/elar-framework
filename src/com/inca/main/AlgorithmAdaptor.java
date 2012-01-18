@@ -1,8 +1,5 @@
 package com.inca.main;
 
-import com.inca.algorithms.BPNNetRecg;
-import com.inca.algorithms.ContourFeaturesRecg;
-import com.inca.algorithms.KNearestNRecg;
 import com.inca.algorithms.*;
 /**
  * 
