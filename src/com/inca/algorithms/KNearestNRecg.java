@@ -42,7 +42,7 @@ public class KNearestNRecg extends Algorithm {
 	private CvKNearest knn;
 	private static final int DEFAULT_TRAIN_SIZE = 10;
 	private static final int DEFAULT_NUM_CAT = 10;
-	private static final int DEFAULT_SIZE = 500;
+	private static final int DEFAULT_SIZE = 100;
 	private static final String PATH = "unknownset\\";
 	
 	/**
