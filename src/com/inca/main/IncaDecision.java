@@ -111,7 +111,7 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,100));
 		pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
-		//System.out.println("KNN: "+getAlgorithmGuess(a2));
+		System.out.println("KNN: "+getAlgorithmGuess(a2));
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
@@ -123,15 +123,16 @@ public class IncaDecision {
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
 		IncaQuery q1 = new IncaQuery(getAlgorithmGuess(a1), pm1, symboltable);
+		IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
 		IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
 		ConfidenceVector cv1 = q1.getCV();
-		//ConfidenceVector cv2 = q2.getCV();
+		ConfidenceVector cv2 = q2.getCV();
 		ConfidenceVector cv3 = q3.getCV();
 		
 		//outputCV(cv1);
 		ConfidenceVector cvSet = new ConfidenceVector("Ensemble");
 		cvSet.addCV(cv1);
-		//cvSet.addCV(cv2);
+		cvSet.addCV(cv2);
 		cvSet.addCV(cv3);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
