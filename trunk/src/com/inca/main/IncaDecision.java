@@ -33,7 +33,7 @@ import static com.googlecode.javacv.cpp.opencv_core.*;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class IncaDecision {
-	private PerformanceMatrix pm1, pm2, pm3;
+	private PerformanceMatrix pm1, pm2, pm3, pm4;
 	private Alphabet symboltable;
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
@@ -43,7 +43,8 @@ public class IncaDecision {
 	 * Constructor.
 	 */
 	public IncaDecision(PerformanceMatrix pm1, PerformanceMatrix pm2, 
-						PerformanceMatrix pm3, String unknownSymbol){
+						PerformanceMatrix pm3, PerformanceMatrix pm4,
+						String unknownSymbol){
 		this.pm1 = pm1;
 		this.pm2 = pm2;
 		this.pm3 = pm3;
@@ -109,9 +110,9 @@ public class IncaDecision {
 		//pm1.saveDatabase(pm1.getName()+".xml");
 		
 		
-		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,100));
-		pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
-		System.out.println("KNN: "+getAlgorithmGuess(a2));
+		//AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,100));
+		//pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
+		//System.out.println("KNN: "+getAlgorithmGuess(a2));
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
@@ -122,18 +123,25 @@ public class IncaDecision {
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
+		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new BPNNetRecg());
+		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
+		System.out.println("TM: "+getAlgorithmGuess(a4));
+		
 		IncaQuery q1 = new IncaQuery(getAlgorithmGuess(a1), pm1, symboltable);
-		IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
+		//IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
 		IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
+		IncaQuery q4 = new IncaQuery(getAlgorithmGuess(a4), pm4, symboltable);
 		ConfidenceVector cv1 = q1.getCV();
-		ConfidenceVector cv2 = q2.getCV();
+		//ConfidenceVector cv2 = q2.getCV();
 		ConfidenceVector cv3 = q3.getCV();
+		ConfidenceVector cv4 = q4.getCV();
 		
 		//outputCV(cv1);
 		ConfidenceVector cvSet = new ConfidenceVector("Ensemble");
 		cvSet.addCV(cv1);
-		cvSet.addCV(cv2);
+		//cvSet.addCV(cv2);
 		cvSet.addCV(cv3);
+		cvSet.addCV(cv4);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
 		

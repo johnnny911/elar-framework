@@ -38,7 +38,7 @@ public class Ensemble {
 		this.confVects = vects;
 	}//end default constructor
 	/**
-	 * Returns the Bayesian Averaged guess of symbol.
+	 * Returns the Averaged guess of symbol.
 	 * @return 	integer guess mapping to symbol in alphabet.
 	 */
 	public int getDecision(){
