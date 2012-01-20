@@ -7,7 +7,7 @@ import static com.googlecode.javacv.cpp.opencv_imgproc.cvResize;
 import com.googlecode.javacv.cpp.opencv_ml.*;
 
 
-public class SVMRecg {
+public class SVMRecg extends Algorithm{
 	private int numTrnSamples;
 	private int numCategories;
 	private CvMat trainingData;
@@ -16,7 +16,7 @@ public class SVMRecg {
 	private CvSVM svmClassifier;
 	private static final int DEFAULT_TRAIN_SIZE = 10;
 	private static final int DEFAULT_NUM_CAT = 10;
-	private static final int DEFAULT_SIZE = 100;
+	private static final int DEFAULT_SIZE = 50;
 	private static final String PATH = "unknownset\\";
 	
 	public SVMRecg(int numTrain, int numCat, int size){
