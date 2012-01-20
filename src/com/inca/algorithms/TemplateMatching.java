@@ -89,10 +89,10 @@ public class TemplateMatching extends Algorithm{
 		// TODO Auto-generated method stub
 		this.dbSize = 10;
 	}
-	/*
+	
 	public static void main(String[] args){
 		TemplateMatching match = new TemplateMatching(10);
-		System.out.println(match.match("(enter name)"));
+		System.out.println(match.match("nine1.png"));
 	}
-	*/
+	
 }//end TemplateMatching class
