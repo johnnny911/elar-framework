@@ -5,6 +5,7 @@ import com.googlecode.javacv.cpp.opencv_core.CvMat;
 import com.inca.algorithms.BPNNetRecg;
 import com.inca.algorithms.ContourFeaturesRecg;
 import com.inca.algorithms.KNearestNRecg;
+import com.inca.algorithms.SVMRecg;
 import com.inca.algorithms.TemplateMatching;
 
 import static com.googlecode.javacv.cpp.opencv_core.CV_32FC1;
@@ -35,7 +36,7 @@ import static com.googlecode.javacv.cpp.opencv_core.*;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 public class IncaDecision {
-	private PerformanceMatrix pm1, pm2, pm3, pm4;
+	private PerformanceMatrix pm1, pm2, pm3, pm4, pm5;
 	private Alphabet symboltable;
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
@@ -107,46 +108,58 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		//System.out.println("CF: "+getAlgorithmGuess(a1));
-		updatePM(pm1, getAlgorithmGuess(a1));
-		pm1.saveDatabase(pm1.getName()+".xml");
+		System.out.println("CF: "+getAlgorithmGuess(a1));
+		//updatePM(pm1, getAlgorithmGuess(a1));
+		//pm1.saveDatabase(pm1.getName()+".xml");
 		
 		
-		//AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,100));
-		//pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
-		//System.out.println("KNN: "+getAlgorithmGuess(a2));
+		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,50));
+		pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
+		System.out.println("KNN: "+getAlgorithmGuess(a2));
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
-		/*
+		
 		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
 		System.out.println("ANN: "+getAlgorithmGuess(a3));
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
+		
 		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
 		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
 		System.out.println("TM: "+getAlgorithmGuess(a4));
+		//updatePM(pm4, getAlgorithmGuess(a4));
+		//pm4.saveDatabase(pm4.getName()+".xml");
+		
+		AlgorithmAdaptor a5 = new AlgorithmAdaptor(new SVMRecg());
+		pm5 = new PerformanceMatrix("SVM", symboltable.getSize());
+		System.out.println("SVM: "+getAlgorithmGuess(a5));
+		//updatePM(pm5, getAlgorithmGuess(a5));
+		//pm5.saveDatabase(pm5.getName()+".xml");
 		
 		IncaQuery q1 = new IncaQuery(getAlgorithmGuess(a1), pm1, symboltable);
-		//IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
+		IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
 		IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
 		IncaQuery q4 = new IncaQuery(getAlgorithmGuess(a4), pm4, symboltable);
+		IncaQuery q5 = new IncaQuery(getAlgorithmGuess(a5), pm5, symboltable);
 		ConfidenceVector cv1 = q1.getCV();
-		//ConfidenceVector cv2 = q2.getCV();
+		ConfidenceVector cv2 = q2.getCV();
 		ConfidenceVector cv3 = q3.getCV();
 		ConfidenceVector cv4 = q4.getCV();
+		ConfidenceVector cv5 = q5.getCV();
 		
 		//outputCV(cv1);
 		ConfidenceVector cvSet = new ConfidenceVector("Ensemble");
 		cvSet.addCV(cv1);
-		//cvSet.addCV(cv2);
+		cvSet.addCV(cv2);
 		cvSet.addCV(cv3);
 		cvSet.addCV(cv4);
+		cvSet.addCV(cv5);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
-		*/
+		
 	}//end getIncaResult method
 	
 	private String getAlgorithmGuess(AlgorithmAdaptor algorithm){
@@ -211,7 +224,7 @@ public class IncaDecision {
 		for(int i = 0; i < 5; i++){
 			for(int numInst = 1; numInst < 11; numInst++){
 				System.out.println("Instance: " + numInst);
-				for(int numCat = 1; numCat < 10; numCat++){
+				for(int numCat = 0; numCat < 10; numCat++){
 					test = new IncaDecision(getPrefixName(numCat)+
 											(numInst), false);
 					test.getIncaResult();
@@ -219,10 +232,9 @@ public class IncaDecision {
 			}
 		}
 		
-		
-	
-		test = new IncaDecision();
-		test.outputPMs("CF");
+
+		//test = new IncaDecision();
+		test.outputPMs("TM");
 		//test.outputPMs("ANN");
 		
 	}//end main method - regression testing
