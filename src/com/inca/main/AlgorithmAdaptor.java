@@ -41,6 +41,6 @@ public class AlgorithmAdaptor {
 	 */
 	public String recognizeSymbol(String unknownSymbol)throws Exception{
 		algorithm.populateDatabase();
-		return algorithm.recognizeSymbol(unknownSymbol+".png");
+		return algorithm.recognizeSymbol(unknownSymbol+".png");//.png
 	}//end recognizeSymbol method
 }//end AlgorithmAdapter class
