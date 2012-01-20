@@ -5,6 +5,10 @@ import com.googlecode.javacv.cpp.opencv_core.CvScalar;
 import com.googlecode.javacv.cpp.opencv_core.CvSize;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 import com.googlecode.javacv.cpp.opencv_ml.CvKNearest;
+import com.inca.main.Alphabet;
+import com.inca.main.IncaDecision;
+import com.inca.main.PerformanceMatrix;
+
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_highgui.*;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
@@ -341,12 +345,12 @@ public class KNearestNRecg extends Algorithm {
 	 * Main method for regression testing.
 	 * @param args
 	 */
-	/*
+	
 	public static void main(String[] args){
-		int numSamples = 51;
+		int numSamples = 50;
 		int numCategories = 10;
-		int sz = 100;
-		/*
+		int sz = 50;
+		
 		KNearestNRecg test = new KNearestNRecg(numSamples, numCategories, sz);
 		test.getData();
 		test.train();
@@ -357,7 +361,7 @@ public class KNearestNRecg extends Algorithm {
 		}
 		PerformanceMatrix pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
 		
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 5; i++){
 			for(int numInst = 1; numInst < 11; numInst++){
 			System.out.println("Instance: " + numInst);
 				for(int numCat = 0; numCat < 10; numCat++){
@@ -369,8 +373,8 @@ public class KNearestNRecg extends Algorithm {
 					pm2.saveDatabase(pm2.getName()+".xml");
 				}
 			}
-		}*
-		new IncaDecision().outputPMs("KNN");
+		}
+		//new IncaDecision().outputPMs("KNN");
 	}//end main method
-	*/
+	
 }//end KNearestNRecg class
