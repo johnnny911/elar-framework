@@ -2,14 +2,16 @@ package com.inca.algorithms;
 
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 import com.inca.main.ConfidenceVector;
-import com.inca.main.Ensemble;
-
 import static com.googlecode.javacv.cpp.opencv_highgui.*;
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
 
 public class TemplateMatching extends Algorithm{
 	private int dbSize;
+	
+	public TemplateMatching(){
+		
+	}//end constructor
 	
 	public TemplateMatching(int dbSize){
 		this.dbSize = dbSize;
@@ -25,7 +27,7 @@ public class TemplateMatching extends Algorithm{
 		String guess;
 		ConfidenceVector tm = new ConfidenceVector("TM");
 
-		IplImage sourceImage = cvLoadImage(unKn + unknownSymbol + ".png");
+		IplImage sourceImage = cvLoadImage(unKn + unknownSymbol);
 		
 		for(int i = 0; i < dbSize; i++){
 			
@@ -50,16 +52,16 @@ public class TemplateMatching extends Algorithm{
 								cvPoint(maxLoc.x()+tempImage.width(), 
 								maxLoc.y()+tempImage.height()), CvScalar.RED, 1, 8, 0);
 			
-			System.out.println(max[0]);
+			//System.out.println(max[0]);
 			//System.out.println(min[0]);
 	
 			tm.addElement(max[0]);
 		}
-		//ConfidenceVector vects = new ConfidenceVector("vectors");
-		//vects.addCV(tm);
-		return guess;//""+(new Ensemble(vects)).getDecision();
+		//im = new ImageProcessing();
 		//im.createNamedWindow(sourceImage, "result");
 		//cvWaitKey(0);
+		return guess = ""+tm.getIndexMax();
+		
 	}//end match method
 	
 	private String getPrefixName(int i){
@@ -85,12 +87,12 @@ public class TemplateMatching extends Algorithm{
 	@Override
 	public void populateDatabase() throws Exception {
 		// TODO Auto-generated method stub
-		
+		this.dbSize = 10;
 	}
-	
+	/*
 	public static void main(String[] args){
 		TemplateMatching match = new TemplateMatching(10);
 		System.out.println(match.match("(enter name)"));
 	}
-	
+	*/
 }//end TemplateMatching class
