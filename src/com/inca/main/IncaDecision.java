@@ -5,6 +5,8 @@ import com.googlecode.javacv.cpp.opencv_core.CvMat;
 import com.inca.algorithms.BPNNetRecg;
 import com.inca.algorithms.ContourFeaturesRecg;
 import com.inca.algorithms.KNearestNRecg;
+import com.inca.algorithms.TemplateMatching;
+
 import static com.googlecode.javacv.cpp.opencv_core.CV_32FC1;
 import static com.googlecode.javacv.cpp.opencv_core.cvCreateMat;
 import static com.googlecode.javacv.cpp.opencv_core.*;
@@ -85,7 +87,7 @@ public class IncaDecision {
 	}//end buildPerfmatrices method
 	
 	private String parseIn(String input){
-		System.out.println(input);
+		//System.out.println(input);
 		if(input.substring(0, 3).equalsIgnoreCase("zer")) return "zero";
 		if(input.substring(0, 3).equalsIgnoreCase("one")) return "one";
 		if(input.substring(0, 3).equalsIgnoreCase("two")) return "two";
@@ -105,9 +107,9 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		System.out.println("CF: "+getAlgorithmGuess(a1));
-		//updatePM(pm1, getAlgorithmGuess(a1));
-		//pm1.saveDatabase(pm1.getName()+".xml");
+		//System.out.println("CF: "+getAlgorithmGuess(a1));
+		updatePM(pm1, getAlgorithmGuess(a1));
+		pm1.saveDatabase(pm1.getName()+".xml");
 		
 		
 		//AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,100));
@@ -116,14 +118,14 @@ public class IncaDecision {
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
-		
+		/*
 		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
 		System.out.println("ANN: "+getAlgorithmGuess(a3));
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
-		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new BPNNetRecg());
+		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
 		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
 		System.out.println("TM: "+getAlgorithmGuess(a4));
 		
@@ -144,7 +146,7 @@ public class IncaDecision {
 		cvSet.addCV(cv4);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
-		
+		*/
 	}//end getIncaResult method
 	
 	private String getAlgorithmGuess(AlgorithmAdaptor algorithm){
@@ -202,26 +204,26 @@ public class IncaDecision {
 	 * Main method for regression testing.
 	 * @param args
 	 */
-	/*
+	
 	public static void main(String[] args){
 		IncaDecision test = null;
 		
-		//for(int i = 0; i < 1; i++){
-			for(int numInst = 1; numInst < 2; numInst++){
+		for(int i = 0; i < 5; i++){
+			for(int numInst = 1; numInst < 11; numInst++){
 				System.out.println("Instance: " + numInst);
-				for(int numCat = 0; numCat < 1; numCat++){
+				for(int numCat = 1; numCat < 10; numCat++){
 					test = new IncaDecision(getPrefixName(numCat)+
 											(numInst), false);
 					test.getIncaResult();
 				}
 			}
-		//}
+		}
 		
 		
 		test = new IncaDecision();
 		test.outputPMs("CF");
-		test.outputPMs("ANN");
+		//test.outputPMs("ANN");
 		
 	}//end main method - regression testing
-	*/
+	
 }//end IncaDecision class
