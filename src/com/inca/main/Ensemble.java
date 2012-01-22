@@ -1,5 +1,8 @@
 //Ensemble.java
 package com.inca.main;
+
+import java.util.List;
+
 /**
  * 
  * @author James Neilan
@@ -26,7 +29,7 @@ package com.inca.main;
  */
 
 public class Ensemble {
-	private ConfidenceVector confVects;
+	private List<ConfidenceVector> confVects;
 	private ConfidenceVector maxValues;
 	
 	/**
@@ -34,7 +37,7 @@ public class Ensemble {
 	 * containing all N algorithms confidence for intended symbol.
 	 * @param vects		vector of vectors
 	 */
-	public Ensemble(ConfidenceVector vects){
+	public Ensemble(List<ConfidenceVector> vects){
 		this.confVects = vects;
 	}//end default constructor
 	/**
@@ -50,16 +53,15 @@ public class Ensemble {
 	 * @return	index	index of recognition guess
 	 */
 	private int averagingCombiner(){
-		int totalSize = ((ConfidenceVector)confVects.getElement(0)).getSize();
+		int totalSize = confVects.get(0).getSize();
 		double totalPs;
 		ConfidenceVector choices = new ConfidenceVector("Choices");
 		for(int i = 0; i < totalSize; i++){
 			totalPs = 0;
-			for(int j = 0; j < confVects.getSize(); j++){
-				totalPs += Double.valueOf(((ConfidenceVector)confVects.getElement(j)).
-															getElement(i).toString());
+			for(int j = 0; j < confVects.size(); j++){
+				totalPs += confVects.get(j).getElement(i);
 			}
-			totalPs /= confVects.getSize();
+			//totalPs /= confVects.size();
 			choices.addElement(totalPs);
 		}
 		return choices.getIndexMax();

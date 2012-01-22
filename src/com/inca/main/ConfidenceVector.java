@@ -28,7 +28,7 @@ import java.util.Vector;
  */
 
 public class ConfidenceVector{
-	private Vector cv;
+	private Vector<Double> cv;
 	private String name;
 	private Comparator comparator = Collections.reverseOrder();
 	
@@ -37,7 +37,7 @@ public class ConfidenceVector{
 	 * @param algName	String name identifying the object
 	 */
 	public ConfidenceVector(String algName){
-		this.cv = new Vector();
+		this.cv = new Vector<Double>();
 		this.name = algName;
 	}//end constructor method
 	/**
@@ -59,9 +59,9 @@ public class ConfidenceVector{
 	 * a multi-dimensional vector.
 	 * @param v		ConfidenceVector to add
 	 */
-	public void addCV(ConfidenceVector v){
-		cv.add(v);
-	}//end addCV method
+//	public void addCV(ConfidenceVector v){
+//		cv.add(v);
+//	}//end addCV method
 	/**
 	 * Sorts the vector from max to min.
 	 */
@@ -98,7 +98,7 @@ public class ConfidenceVector{
 	 * @param index		target position
 	 * @return	element object at position index
 	 */
-	public Object getElement(int index){
+	public double getElement(int index){
 		return cv.elementAt(index);
 	}//end getElement mehtod
 }//end ConfidenceVector class

@@ -1,6 +1,9 @@
 //IncaDecision.java
 package com.inca.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.googlecode.javacv.cpp.opencv_core.CvMat;
 import com.inca.algorithms.BPNNetRecg;
 import com.inca.algorithms.ContourFeaturesRecg;
@@ -108,34 +111,34 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		System.out.println("CF: "+getAlgorithmGuess(a1));
+//		System.out.println("CF: "+getAlgorithmGuess(a1));
 		//updatePM(pm1, getAlgorithmGuess(a1));
 		//pm1.saveDatabase(pm1.getName()+".xml");
 		
 		
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,50));
 		pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
-		System.out.println("KNN: "+getAlgorithmGuess(a2));
+//		System.out.println("KNN: "+getAlgorithmGuess(a2));
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
 		
 		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		System.out.println("ANN: "+getAlgorithmGuess(a3));
+//		System.out.println("ANN: "+getAlgorithmGuess(a3));
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
 		
 		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
 		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
-		System.out.println("TM: "+getAlgorithmGuess(a4));
+//		System.out.println("TM: "+getAlgorithmGuess(a4));
 		//updatePM(pm4, getAlgorithmGuess(a4));
 		//pm4.saveDatabase(pm4.getName()+".xml");
 		
 		AlgorithmAdaptor a5 = new AlgorithmAdaptor(new SVMRecg());
 		pm5 = new PerformanceMatrix("SVM", symboltable.getSize());
-		System.out.println("SVM: "+getAlgorithmGuess(a5));
+//		System.out.println("SVM: "+getAlgorithmGuess(a5));
 		//updatePM(pm5, getAlgorithmGuess(a5));
 		//pm5.saveDatabase(pm5.getName()+".xml");
 		
@@ -151,12 +154,12 @@ public class IncaDecision {
 		ConfidenceVector cv5 = q5.getCV();
 		
 		//outputCV(cv1);
-		ConfidenceVector cvSet = new ConfidenceVector("Ensemble");
-		cvSet.addCV(cv1);
-		cvSet.addCV(cv2);
-		cvSet.addCV(cv3);
-		cvSet.addCV(cv4);
-		cvSet.addCV(cv5);
+		List<ConfidenceVector> cvSet = new ArrayList<ConfidenceVector>();
+		cvSet.add(cv1);
+		cvSet.add(cv2);
+		cvSet.add(cv3);
+		cvSet.add(cv4);
+		cvSet.add(cv5);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
 		
