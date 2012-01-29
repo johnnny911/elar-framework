@@ -123,8 +123,8 @@ public class IncaDecision {
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
 		
-		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
-		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
+	//	AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
+		//pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
 //		System.out.println("ANN: "+getAlgorithmGuess(a3));
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
@@ -144,12 +144,12 @@ public class IncaDecision {
 		
 		IncaQuery q1 = new IncaQuery(getAlgorithmGuess(a1), pm1, symboltable);
 		IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
-		IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
+	//	IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
 		IncaQuery q4 = new IncaQuery(getAlgorithmGuess(a4), pm4, symboltable);
 		IncaQuery q5 = new IncaQuery(getAlgorithmGuess(a5), pm5, symboltable);
 		ConfidenceVector cv1 = q1.getCV();
 		ConfidenceVector cv2 = q2.getCV();
-		ConfidenceVector cv3 = q3.getCV();
+		//ConfidenceVector cv3 = q3.getCV();
 		ConfidenceVector cv4 = q4.getCV();
 		ConfidenceVector cv5 = q5.getCV();
 		
@@ -157,7 +157,7 @@ public class IncaDecision {
 		List<ConfidenceVector> cvSet = new ArrayList<ConfidenceVector>();
 		cvSet.add(cv1);
 		cvSet.add(cv2);
-		cvSet.add(cv3);
+		//cvSet.add(cv3);
 		cvSet.add(cv4);
 		cvSet.add(cv5);
 		Ensemble output = new Ensemble(cvSet);

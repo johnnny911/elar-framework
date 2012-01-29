@@ -52,6 +52,11 @@ public class Ensemble {
 	 * decision to caller method.
 	 * @return	index	index of recognition guess
 	 */
+	
+	private int dempsterShaferCombiner(){
+		
+		return 0;
+	}
 	private int averagingCombiner(){
 		int totalSize = confVects.get(0).getSize();
 		double totalPs;
@@ -59,7 +64,8 @@ public class Ensemble {
 		for(int i = 0; i < totalSize; i++){
 			totalPs = 0;
 			for(int j = 0; j < confVects.size(); j++){
-				totalPs += confVects.get(j).getElement(i);
+				double elem = confVects.get(j).getElement(i);
+				totalPs += !Double.isNaN(elem) ? elem : 0.0;
 			}
 			//totalPs /= confVects.size();
 			choices.addElement(totalPs);

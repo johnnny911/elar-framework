@@ -55,6 +55,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	public ContourFeaturesRecg(){
 		
 	}//end CountourFeaturesRecg method
+	
 	/**
 	 * 
 	 * @param sourceImage
