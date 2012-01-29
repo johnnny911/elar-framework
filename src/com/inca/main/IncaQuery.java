@@ -46,7 +46,7 @@ public class IncaQuery {
 	 * Creates the confidence vector for the algorithm.
 	 */
 	private void createConfVect(){
-		String guess = new String(new IncaDecision().getPrefixName(Integer.parseInt(algGuess)));
+		String guess = new String(IncaDecision.getPrefixName(Integer.parseInt(algGuess)));
 		int symbolNumber = sigma.getSymbolValue(guess).intValue();
 		double divisor = 0, post = 0;
 		
