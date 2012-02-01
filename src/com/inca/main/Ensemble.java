@@ -1,7 +1,12 @@
 //Ensemble.java
 package com.inca.main;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * 
@@ -31,6 +36,23 @@ import java.util.List;
 public class Ensemble {
 	private List<ConfidenceVector> confVects;
 	private ConfidenceVector maxValues;
+	private static boolean trained = false;
+		// Symbol-space sized decision template
+		// Essentially an average of all algorithms' performance for each symbol,
+		// each CV is compared against this for the decision template combiner
+	private static double[] decision_templates; 
+	
+	static{
+		if (!trained){
+			try{
+				trainDP();
+				trained = true;
+			}
+			catch(Exception e){
+				trained = false;
+			}	
+		}
+	}
 	
 	/**
 	 * Constructor. Accepts a multi-dimensional ConfidenceVector
@@ -39,22 +61,70 @@ public class Ensemble {
 	 */
 	public Ensemble(List<ConfidenceVector> vects){
 		this.confVects = vects;
+		train();
+		// Initialize with size of symbol space, basically
+		decision_templates = new double[vects.get(0).getSize()];
 	}//end default constructor
+	
+	private void train(){
+		
+	}
+	
+	// Train decision template
+	private static void trainDP() throws Exception{
+		String filename = "nnDatabase";
+		File file = null;
+		Scanner sc = null;
+		try{
+			file = new File(filename, "r");
+			sc = new Scanner(file);
+		}
+		catch(Exception e){
+			System.err.println("error loading database: " + filename);
+			throw new Exception("error loading database: " + filename,e);
+		}
+		finally{
+			try{if (sc != null) sc.close();} catch(Exception e){}
+		}
+		// Each symbol
+//		for (int i=0; i<decision_templates.length; i++){
+//			double avg = 0.0;
+//			// Sum the value for this symbol across training set
+////			for (int j=0; j<confVects.size(); j++)
+////				avg += confVects.get(j).getElement(i);
+////			avg /= confVects.size();
+//			// Map the symbol to the average
+//			decision_templates[i] = avg;
+//		}
+	}
 	/**
+	 *
 	 * Returns the Averaged guess of symbol.
 	 * @return 	integer guess mapping to symbol in alphabet.
 	 */
 	public int getDecision(){
-		return averagingCombiner();
+		System.out.println("decision template says " + decisionTemplateCombiner());
+		int avgComb = averagingCombiner();
+		System.out.println("averaging combiner says " + avgComb);
+		return avgComb;
 	}//end getDecision method
-	/**
-	 * Private method that performs the averaging and returns the recognition
-	 * decision to caller method.
-	 * @return	index	index of recognition guess
-	 */
+
 	
-	private int dempsterShaferCombiner(){
+	// Returns a guess based on the lowest squared euclidean distance
+	// to its class' decision template.
+	private int decisionTemplateCombiner(){
+		if (!trained)
+			return -1;
 		
+		Map<Integer,Double> choices = new HashMap<Integer,Double>();
+		for (int i=0; i<confVects.size(); i++){
+			ConfidenceVector cv = confVects.get(i);
+			double distance = 0.0;
+			for (int j=0; j < cv.getSize(); j++){
+				distance += Math.pow(cv.getElement(j) - decision_templates[i], 2);
+			}
+			choices.put(i, distance);
+		}
 		return 0;
 	}
 	private int averagingCombiner(){
