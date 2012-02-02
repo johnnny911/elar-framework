@@ -227,7 +227,7 @@ public class SVMRecg extends Algorithm{
 		crit.type(1);
 
 		CvSVMParams params = new CvSVMParams();
-		params.kernel_type(CvSVM.LINEAR);
+		params.kernel_type(CvSVM.RBF);
 		params.svm_type(CvSVM.C_SVC);
 		params.C(1);
 		params.term_crit(crit);
@@ -271,7 +271,7 @@ public class SVMRecg extends Algorithm{
 	}//end getNumCategories method
 	
 	public static void main(String[] args){
-		int numSamples = 20;
+		int numSamples = 50;
 		int numCategories = 10;
 		int sz = 100;
 		
@@ -279,6 +279,6 @@ public class SVMRecg extends Algorithm{
 		test.getData();
 		test.train();
 		
-		System.out.println(test.recognizeSymbol("two1.png"));
+		System.out.println(test.recognizeSymbol("zero1.png"));
 	}
 }//end SVMRecg class

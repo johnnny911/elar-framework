@@ -396,7 +396,7 @@ public class BPNNetRecg extends Algorithm {
 	}
 	
 	public void populateDatabase()throws Exception{
-		this.trainNet("nnDatabase");
+		this.trainNet("nnDatabase2.txt");
 	}
 	/**
 	 * Main method used for regression testing.
