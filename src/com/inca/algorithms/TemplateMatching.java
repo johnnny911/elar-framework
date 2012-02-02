@@ -22,21 +22,24 @@ public class TemplateMatching extends Algorithm{
 		String unKn = "unknownset\\";
 		IplImage inImage;
 		ImageProcessing im;
-		IplImage result;
+		IplImage result = null;
 		IplImage tempImage;
 		String guess;
 		ConfidenceVector tm = new ConfidenceVector("TM");
 
 		IplImage sourceImage = cvLoadImage(unKn + unknownSymbol);
+		IplImage sourceImage2 = (new ImageProcessing()).bBox(sourceImage);
 		
 		for(int i = 0; i < dbSize; i++){
 			
-			inImage = cvLoadImage(inPath + getPrefixName(i)+"1.png");
+			inImage = cvLoadImage(inPath + getPrefixName(i)+"2.png");
 			im = new ImageProcessing();
 			tempImage = im.bBox(inImage);
 			
-			result = cvCreateImage(cvSize(sourceImage.width()-tempImage.width()+1,
-					sourceImage.height()-tempImage.height()+1), IPL_DEPTH_32F, 1);
+			//result = cvCreateImage(cvSize(sourceImage.width()-tempImage.width()+1,
+			//		sourceImage.height()-tempImage.height()+1), IPL_DEPTH_32F, 1);
+		    result = cvCreateImage(cvSize(500,
+					500), IPL_DEPTH_32F, 1);
 			
 			cvZero(result);
 			
@@ -52,14 +55,16 @@ public class TemplateMatching extends Algorithm{
 								cvPoint(maxLoc.x()+tempImage.width(), 
 								maxLoc.y()+tempImage.height()), CvScalar.RED, 1, 8, 0);
 			
-			//System.out.println(max[0]);
+			System.out.println(max[0]);
 			//System.out.println(min[0]);
+			//System.out.println(max[0] + min[0]);
 	
 			tm.addElement(max[0]);
 		}
-		//im = new ImageProcessing();
-		//im.createNamedWindow(sourceImage, "result");
-		//cvWaitKey(0);
+		
+		im = new ImageProcessing();
+		im.createNamedWindow(sourceImage2, "result");
+		cvWaitKey(0);
 		return guess = ""+tm.getIndexMax();
 		
 	}//end match method

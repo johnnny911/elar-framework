@@ -4,7 +4,12 @@ import static com.googlecode.javacv.cpp.opencv_core.IPL_DEPTH_8U;
 import static com.googlecode.javacv.cpp.opencv_core.cvGet2D;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 import static com.googlecode.javacv.cpp.opencv_highgui.*;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 /**
  * 
@@ -38,6 +43,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	private int symbol;
 	private String datafile;
 	private int x, y;
+	private boolean createDb = false;
 	private static final String PATH = "unknownset\\";
 	
 	/**
@@ -124,13 +130,13 @@ public class ContourFeaturesRecg extends Algorithm {
 	private void outprof (double []ldata, double []rdata, int n)
 	{
 		int i,j;
-	
+	/*
 		for (i=1; i<=n; i++) {
 		   //System.out.println (String.format("%2d : ", i));
 		   for (j=0; j<ldata[i]; j++){} //System.out.println (".");
 		   for (j=(int)ldata[i]; j<=(int)rdata[i]; j++){} //System.out.println ("#");
-		   //System.out.println (String.format("\t\t\t%f %f\n", ldata[i], rdata[i]));
-		}
+		   System.out.println (String.format("\t\t\t%f %f\n", ldata[i], rdata[i]));
+		}*/
 	}//end outprof method
 	/**
 	 * 
@@ -140,10 +146,11 @@ public class ContourFeaturesRecg extends Algorithm {
 	public void outdata (double []ldata, int n)
 	{
 		int i;
-	
+	/*
 		for (i=1; i<=n; i++) {
-		   //System.out.println(String.format("%2d : %f\n", i, ldata[i]));
+		   System.out.println(String.format("%2d : %f\n", i, ldata[i]));
 		}
+		*/
 	}//end outdata method
 	/**
 	 * 
@@ -504,8 +511,36 @@ public class ContourFeaturesRecg extends Algorithm {
 		System.out.println (String.format("%1d%1d%1d%1d %1d %1d\n",g1,g2,g3,g4, h, ii));
 		System.out.println (String.format("Found a '%d'\n", num));
 		*/	
+		if(createDb){
+			try {
+				writeDatabase(bits);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//for(int g = 0; g < bits.length; g++){
+		//	System.out.print(bits[g]);
+		//}
 		return num;	
 	}//end recognize method
+	/**
+	 * 
+	 * @param bits
+	 * @throws Exception
+	 */
+	private void writeDatabase(int [] bits) throws Exception{
+		FileWriter stream = new FileWriter("cfDatabase.db", true);
+		BufferedWriter out = new BufferedWriter(stream);
+		String iter = "9 ";
+		out.write(iter);
+		for(int i = 0; i < bits.length; i++){
+			out.write(new String(""+bits[i]));
+		}
+		out.write("\n");
+		out.close();
+		stream.close();
+	}
 	/**
 	 * 
 	 * @param file
@@ -587,8 +622,12 @@ public class ContourFeaturesRecg extends Algorithm {
 		ContourFeaturesRecg test = new ContourFeaturesRecg();
 		try {
 			test.populateDatabase("prof.db", 1000, 50);
-			test.recognizeSymbol("dig9.pbm");
-			System.out.println("Symbol: "+ test.getSymbol());
+			test.setCreateDB(true);
+			for(int i = 1; i < 51; i++){
+				test.recognizeSymbol("nine"+i+".png");
+			}
+			
+			//System.out.println("Symbol: "+ test.getSymbol());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -597,7 +636,10 @@ public class ContourFeaturesRecg extends Algorithm {
 
 	@Override
 	public void populateDatabase() throws Exception {
-		// TODO Auto-generated method stub
-		populateDatabase("prof.db", 1000, 50);
+		populateDatabase("cfDatabase.db", 1000, 50);
+	}
+	
+	private void setCreateDB(boolean set){
+		this.createDb = set;
 	}
 }//end ContourFeatruesRecg class

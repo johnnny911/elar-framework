@@ -111,7 +111,7 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-//		System.out.println("CF: "+getAlgorithmGuess(a1));
+		//System.out.println("CF: "+getAlgorithmGuess(a1));
 		//updatePM(pm1, getAlgorithmGuess(a1));
 		//pm1.saveDatabase(pm1.getName()+".xml");
 		
@@ -123,11 +123,11 @@ public class IncaDecision {
 		//pm2.saveDatabase(pm2.getName()+".xml");
 		
 		
-	//	AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
-		//pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-//		System.out.println("ANN: "+getAlgorithmGuess(a3));
-		//updatePM(pm3, getAlgorithmGuess(a3));
-		//pm3.saveDatabase(pm3.getName()+".xml");
+		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
+		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
+		//System.out.println("ANN: "+getAlgorithmGuess(a3));
+		updatePM(pm3, getAlgorithmGuess(a3));
+		pm3.saveDatabase(pm3.getName()+".xml");
 		
 		
 		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
@@ -135,7 +135,7 @@ public class IncaDecision {
 //		System.out.println("TM: "+getAlgorithmGuess(a4));
 		//updatePM(pm4, getAlgorithmGuess(a4));
 		//pm4.saveDatabase(pm4.getName()+".xml");
-		
+		/*
 		AlgorithmAdaptor a5 = new AlgorithmAdaptor(new SVMRecg());
 		pm5 = new PerformanceMatrix("SVM", symboltable.getSize());
 //		System.out.println("SVM: "+getAlgorithmGuess(a5));
@@ -162,7 +162,7 @@ public class IncaDecision {
 		cvSet.add(cv5);
 		Ensemble output = new Ensemble(cvSet);
 		System.out.println("Choice: " + output.getDecision());
-		
+		*/
 	}//end getIncaResult method
 	
 	private String getAlgorithmGuess(AlgorithmAdaptor algorithm){
@@ -223,7 +223,8 @@ public class IncaDecision {
 	
 	public static void main(String[] args){
 		IncaDecision test = null;
-		
+		test= new IncaDecision();
+		/*
 		for(int i = 0; i < 5; i++){
 			for(int numInst = 1; numInst < 11; numInst++){
 				System.out.println("Instance: " + numInst);
@@ -234,12 +235,14 @@ public class IncaDecision {
 				}
 			}
 		}
-		
+		*/
 
 		//test = new IncaDecision();
-		test.outputPMs("TM");
-		//test.outputPMs("ANN");
-		
+		//test.outputPMs("CF");
+		test.outputPMs("ANN");
+		//test.outputPMs("TM");
+		//test.outputPMs("KNN");
+		//test.outputPMs("SVM");
 	}//end main method - regression testing
 	
 }//end IncaDecision class
