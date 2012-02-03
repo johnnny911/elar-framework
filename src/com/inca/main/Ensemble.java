@@ -1,12 +1,16 @@
 //Ensemble.java
 package com.inca.main;
 
+import static com.googlecode.javacv.cpp.opencv_core.cvLoad;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
 
 /**
  * 
@@ -45,6 +49,7 @@ public class Ensemble {
 	static{
 		if (!trained){
 			try{
+				decision_templates = new double[10];
 				trainDP();
 				trained = true;
 			}
@@ -61,41 +66,68 @@ public class Ensemble {
 	 */
 	public Ensemble(List<ConfidenceVector> vects){
 		this.confVects = vects;
-		train();
-		// Initialize with size of symbol space, basically
-		decision_templates = new double[vects.get(0).getSize()];
 	}//end default constructor
 	
-	private void train(){
-		
-	}
 	
 	// Train decision template
 	private static void trainDP() throws Exception{
-		String filename = "nnDatabase";
-		File file = null;
-		Scanner sc = null;
 		try{
-			file = new File(filename, "r");
-			sc = new Scanner(file);
+			List<CvMat> pms = new ArrayList<CvMat>();
+			
+			CvMat ann = new CvMat(cvLoad("ANN.xml")); pms.add(ann);
+			CvMat cf = new CvMat(cvLoad("CF.xml"));   pms.add(cf);
+			Map<Integer,List<ConfidenceVector>>  symbolToCvs= new HashMap<Integer,List<ConfidenceVector>>();
+			System.out.println("train");
+			
+			// Construct CV's for each symbol
+			for (int i=0; i<10; i++){
+			
+				for (int k=0; k < pms.size(); k++){
+					CvMat pm = pms.get(k);
+					double divisor = 0.0;
+					// each column (symbol recognized)
+					// sum [row][j]
+					for (int j=0; j<10; j++){
+						divisor += pm.get(i, j);
+					}
+					
+					
+					ConfidenceVector cv = new ConfidenceVector(String.valueOf(i));
+					// Loop back through, compute posterior probability
+					for (int j=0; j<10; j++){
+						double post = pm.get(i,j) / divisor;
+						cv.addElement(post);
+					}
+					
+					if (!symbolToCvs.containsKey(i)){
+						List<ConfidenceVector> list = new ArrayList<ConfidenceVector>();
+						list.add(cv);
+						symbolToCvs.put(i, list);
+					}
+					else
+						symbolToCvs.get(i).add(cv);
+				}
+			}
+			
+			// Finally, average CV value for each symbol and put into decision template
+			for (int i=0; i < 10; i++){
+				List<ConfidenceVector> cvs = symbolToCvs.get(i);
+				double weight = 0.0;
+				for (int j=0; j<cvs.size(); j++)
+					weight += cvs.get(j).getElement(i);
+				weight /= cvs.size();
+				decision_templates[i] = weight;
+			}
+	
 		}
 		catch(Exception e){
-			System.err.println("error loading database: " + filename);
-			throw new Exception("error loading database: " + filename,e);
+			System.err.println("error loading databases ");
+			throw new Exception("error loading database",e);
 		}
 		finally{
-			try{if (sc != null) sc.close();} catch(Exception e){}
+			if (true)
+				System.out.println();
 		}
-		// Each symbol
-//		for (int i=0; i<decision_templates.length; i++){
-//			double avg = 0.0;
-//			// Sum the value for this symbol across training set
-////			for (int j=0; j<confVects.size(); j++)
-////				avg += confVects.get(j).getElement(i);
-////			avg /= confVects.size();
-//			// Map the symbol to the average
-//			decision_templates[i] = avg;
-//		}
 	}
 	/**
 	 *

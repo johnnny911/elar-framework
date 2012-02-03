@@ -49,7 +49,7 @@ public class IncaQuery {
 		String guess = new String(IncaDecision.getPrefixName(Integer.parseInt(algGuess)));
 		int symbolNumber = sigma.getSymbolValue(guess).intValue();
 		double divisor = 0, post = 0;
-		
+		// sum column (# times this symbol was recognized)
 		for(int i = 0; i < pm.getSize(); i++){
 			divisor += pm.getRecNum(i, symbolNumber);
 		}
