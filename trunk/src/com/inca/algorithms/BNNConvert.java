@@ -190,8 +190,8 @@ public class BNNConvert {
 	private IplImage scaleDown(IplImage mods2, int newR, int newC){
 		IplImage reImage = null;//IplImage.create(mods2.width(), mods2.height(), IPL_DEPTH_8U, 1);
 		IplImage x = IplImage.create(mods2.width(), mods2.height(), IPL_DEPTH_8U, 1);
-		int ii, jj, k, colk, rowk, rs, cs;
-		double rFactor, cFactor, accum, area, xf;
+		int ii, jj, k, colk, rowk = 0, rs = 0, cs;
+		double rFactor, cFactor, accum=0.0, area, xf;
 		double []rw = new double[25];
 		double []cw = new double[25];
 		CvScalar scalar = new CvScalar();
@@ -213,12 +213,15 @@ public class BNNConvert {
 		//based on interpolation from the original image
 		for(int i = 0; i < newR; i++){
 			for(int j = 0; j < newC; j++){
+				try{
 				//set up the row re-scale
 				rw[0] = bigger(i*rFactor) - i*rFactor;
 				rs = (int)(Math.floor(i*rFactor)+0.001);
 				k = 1;
 				xf = rFactor - rw[0];
-				
+				if (k >= 25){
+					System.out.println();
+				}
 				while(xf >= 1.0){
 					rw[k++] = 1.0;
 					xf = xf - 1.0;
@@ -229,6 +232,7 @@ public class BNNConvert {
 					rw[k] = xf;
 				}
 				rowk = k;
+				
 				
 				//set up the column re-scale
 				cw[0] = bigger(j*cFactor) - j*cFactor;
@@ -257,12 +261,17 @@ public class BNNConvert {
 						accum += rw[ii]*cw[jj]*(cvGet2D(x, rs+ii, cs+jj).getVal(0));
 					}
 				}
+				}
+				catch (ArrayIndexOutOfBoundsException e){
+					System.out.println();
+				}
 				accum = accum / area;
 				if(accum > 255.0){
 					//System.out.println(accum+"at"+i+j);
 				}
 				scalar.setVal(0, accum+0.5);
 				cvSet2D(reImage, i, j, scalar);
+				
 			}
 		}//end re-scaling nested for loop
 		
