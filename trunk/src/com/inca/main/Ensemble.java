@@ -5,10 +5,12 @@ import static com.googlecode.javacv.cpp.opencv_core.cvLoad;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import com.googlecode.javacv.cpp.opencv_core.CvMat;
 
@@ -148,17 +150,36 @@ public class Ensemble {
 		if (!trained)
 			return -1;
 		
-		Map<Integer,Double> choices = new HashMap<Integer,Double>();
+		List<CombinerChoice> choices = new ArrayList<CombinerChoice>();
 		for (int i=0; i<confVects.size(); i++){
 			ConfidenceVector cv = confVects.get(i);
 			double distance = 0.0;
 			for (int j=0; j < cv.getSize(); j++){
 				distance += Math.pow(cv.getElement(j) - decision_templates[i], 2);
 			}
-			choices.put(i, distance);
+			choices.add(new CombinerChoice(i, distance));
 		}
-		return 0;
+		return Collections.min(choices).getSymbol();
 	}
+	
+	private class CombinerChoice implements Comparable<CombinerChoice>{
+		private int ix; // Symbol
+		private double confidence;
+		
+		CombinerChoice(int ix, double confidence){
+			this.ix = ix;
+			this.confidence = confidence;
+		}
+		
+		public int compareTo(CombinerChoice other){
+			return new Double(confidence).compareTo(other.confidence);
+		}
+		
+		public int getSymbol(){
+			return ix;
+		}
+	}
+	
 	private int averagingCombiner(){
 		int totalSize = confVects.get(0).getSize();
 		double totalPs;
