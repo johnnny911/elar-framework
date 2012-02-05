@@ -137,9 +137,10 @@ public class Ensemble {
 	 * @return 	integer guess mapping to symbol in alphabet.
 	 */
 	public int getDecision(){
-		System.out.println("decision template says " + decisionTemplateCombiner());
 		int avgComb = averagingCombiner();
 		System.out.println("averaging combiner says " + avgComb);
+		System.out.println("decision template says " + decisionTemplateCombiner());
+	
 		return avgComb;
 	}//end getDecision method
 
@@ -151,14 +152,25 @@ public class Ensemble {
 			return -1;
 		
 		List<CombinerChoice> choices = new ArrayList<CombinerChoice>();
-		for (int i=0; i<confVects.size(); i++){
-			ConfidenceVector cv = confVects.get(i);
+		
+		for (int i=0; i<decision_templates.length; i++){
 			double distance = 0.0;
-			for (int j=0; j < cv.getSize(); j++){
-				distance += Math.pow(cv.getElement(j) - decision_templates[i], 2);
+			for (int j=0; j < confVects.size(); j++){
+				double dist = confVects.get(j).getElement(i);
+				distance += Math.pow(!Double.isNaN(dist) ? dist : 0.0 - decision_templates[i], 2);
 			}
+			distance *= ( 1 - 1.0 / ( (confVects.size()*decision_templates.length) ) );
 			choices.add(new CombinerChoice(i, distance));
 		}
+		
+//		for (int i=0; i<confVects.size(); i++){
+//			ConfidenceVector cv = confVects.get(i);
+//			double distance = 0.0;
+//			for (int j=0; j < cv.getSize(); j++){
+//				distance += Math.pow(cv.getElement(j) - decision_templates[i], 2);
+//			}
+//			choices.add(new CombinerChoice(i, distance));
+//		}
 		return Collections.min(choices).getSymbol();
 	}
 	
