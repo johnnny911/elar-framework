@@ -127,8 +127,7 @@ public class Ensemble {
 			throw new Exception("error loading database",e);
 		}
 		finally{
-			if (true)
-				System.out.println();
+			
 		}
 	}
 	/**
@@ -157,10 +156,11 @@ public class Ensemble {
 			double distance = 0.0;
 			for (int j=0; j < confVects.size(); j++){
 				double dist = confVects.get(j).getElement(i);
-				distance += Math.pow(!Double.isNaN(dist) ? dist : 0.0 - decision_templates[i], 2);
+				if (!Double.isNaN(dist))
+					distance += Math.pow(dist - decision_templates[i], 2);
 			}
 			distance *= ( 1 - 1.0 / ( (confVects.size()*decision_templates.length) ) );
-			choices.add(new CombinerChoice(i, distance));
+			if (distance != 0.0) choices.add(new CombinerChoice(i, distance));
 		}
 		
 //		for (int i=0; i<confVects.size(); i++){
