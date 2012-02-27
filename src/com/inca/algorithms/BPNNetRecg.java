@@ -406,9 +406,12 @@ public class BPNNetRecg extends Algorithm {
 	public static void main(String[] args){
 		BPNNetRecg test = new BPNNetRecg(48, 96, 10);
 		try {
-			test.trainNet("datapc1");
+			//test.trainNet("datapc1");
+			test.trainNet("nnDatabase2.txt");
 			//test.setNumOutputs(1);
-			test.recognizeSymbol("nnDataOut");
+			//test.recognizeSymbol("nnDataOut");
+			BPNNWeights run = new BPNNWeights("weightsOut.txt", 48, 96, 10);
+			run.saveWeights(hWeights, oWeights);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

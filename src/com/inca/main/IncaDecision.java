@@ -44,6 +44,7 @@ public class IncaDecision {
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
 	private boolean incrLrn = false;
+	private BKS bks = new BKS();;
 	
 	/**
 	 * Constructor.
@@ -55,6 +56,7 @@ public class IncaDecision {
 		this.pm2 = pm2;
 		this.pm3 = pm3;
 		this.unknownSymbol = unknownSymbol;
+		buildSymbolTable();
 	}//end default constructor
 	/**
 	 * 
@@ -112,26 +114,26 @@ public class IncaDecision {
 		
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		System.out.println("CF: "+getAlgorithmGuess(a1));
+		//System.out.println("CF: "+getAlgorithmGuess(a1));
 		//updatePM(pm1, getAlgorithmGuess(a1));
 		//pm1.saveDatabase(pm1.getName()+".xml");
-		outputPMs();
+		//outputPMs();
 		
-		
+		/*
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new KNearestNRecg(10,10,50));
 		pm2 = new PerformanceMatrix("KNN", symboltable.getSize());
 		//System.out.println("KNN: "+getAlgorithmGuess(a2));
 		//updatePM(pm2, getAlgorithmGuess(a2));
 		//pm2.saveDatabase(pm2.getName()+".xml");
-		
+		*/
 		
 		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		System.out.println("ANN: "+getAlgorithmGuess(a3));
+		//System.out.println("ANN: "+getAlgorithmGuess(a3));
 	//	updatePM(pm3, getAlgorithmGuess(a3));
 	//	pm3.saveDatabase(pm3.getName()+".xml");
 		
-		
+		/*
 		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
 		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
 //		System.out.println("TM: "+getAlgorithmGuess(a4));
@@ -167,10 +169,29 @@ public class IncaDecision {
 		Ensemble output = new Ensemble(cvSet);
 		//updatePM(pm6, ""+output.getDecision());
 		//pm6.saveDatabase(pm6.getName()+".xml");
-		System.out.println("Choice: " + output.getDecision());
+		System.out.println("Choice: " + translateDecision(output.getDecision()));
+		*/
+		//BSK
+		trainBKS(a1, a3);
 		
 	}//end getIncaResult method
 	
+	private void trainBKS(AlgorithmAdaptor a1, AlgorithmAdaptor a2){
+		//BKS ------
+		String guesses = getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
+		//System.out.println(guesses);
+		bks.addTuple(guesses, 2);
+		bks.trainSpace(guesses, parseIn(unknownSymbol));
+	}//end trainBKS method
+	
+	private String getBKSDecision(String tuple){
+		String reString = bks.getGuess(tuple);
+		return reString;
+	}
+	private void saveBKS(){
+		bks.writeDatabase();
+	}
+
 	private String getAlgorithmGuess(AlgorithmAdaptor algorithm){
 		String guess = "none";
 		try {
@@ -209,47 +230,68 @@ public class IncaDecision {
 			System.out.println();
 		}
 	}//testing only------
+	
 	public static String getPrefixName(int i){
-		if(i == 0) return "zero";
-		if(i == 1) return "one";
-		if(i == 2) return "two";
-		if(i == 3) return "three";
-		if(i == 4) return "four";
-		if(i == 5) return "five";
-		if(i == 6) return "six";
-		if(i == 7) return "seven";
-		if(i == 8) return "eight";
+		//single numerals
+		if(i == 0) return "zero";if(i == 1) return "one";if(i == 2) return "two";
+		if(i == 3) return "three";if(i == 4) return "four";if(i == 5) return "five";
+		if(i == 6) return "six";if(i == 7) return "seven";if(i == 8) return "eight";
 		if(i == 9) return "nine";
+		//caps - English Alphabet
+		if(i == 10) return "A";if(i == 11) return "B";if(i == 12) return "C";
+		if(i == 13) return "D";if(i == 14) return "E";if(i == 15) return "F";
+		/*
+		if(i == 16) return "G";if(i == 17) return "H";if(i == 18) return "I";
+		if(i == 19) return "J";if(i == 20) return "K";if(i == 21) return "L";
+		if(i == 22) return "M";if(i == 23) return "N";if(i == 24) return "O";
+		if(i == 25) return "P";if(i == 26) return "Q";if(i == 27) return "R";
+		if(i == 28) return "S";if(i == 29) return "T";if(i == 30) return "U";
+		if(i == 31) return "V";if(i == 32) return "W";if(i == 33) return "X";
+		if(i == 34) return "Y";if(i == 35) return "Z";
+		//lower case - English Alphabet
+		if(i == 36) return "a";if(i == 37) return "b";if(i == 38) return "c";
+		if(i == 39) return "d";if(i == 40) return "e";if(i == 41) return "f";
+		if(i == 42) return "g";if(i == 43) return "h";if(i == 44) return "i";
+		if(i == 45) return "j";if(i == 46) return "k";if(i == 47) return "l";
+		if(i == 48) return "m";if(i == 49) return "n";if(i == 50) return "o";
+		if(i == 51) return "p";if(i == 52) return "q";if(i == 53) return "r";
+		if(i == 54) return "s";if(i == 55) return "t";if(i == 56) return "u";
+		if(i == 57) return "v";if(i == 58) return "w";if(i == 59) return "x";
+		if(i == 60) return "y";if(i == 61) return "z";
+		*/
 		return "null";
 	}//end getPrefixName method
+	
+	private String translateDecision(int decision){
+		String out = new String();
+		out = getPrefixName(decision);
+		return out;
+	}//end translateDecision method
 	/**
 	 * Main method for regression testing.
 	 * @param args
 	 */
-	
 	public static void main(String[] args){
 		IncaDecision test = null;
 		test= new IncaDecision();
-		
-		for(int i = 0; i < 5; i++){
-			for(int numInst = 1; numInst < 11; numInst++){
+	
+		//for(int i = 0; i < 5; i++){
+			for(int numInst = 1; numInst < 2; numInst++){
 				System.out.println("Instance: " + numInst);
-				for(int numCat = 0; numCat < 10; numCat++){
+				for(int numCat = 0; numCat < 1; numCat++){
 					test = new IncaDecision(getPrefixName(numCat)+
 											(numInst), false);
 					test.getIncaResult();
 				}
 			}
-		}
+		//}
 		
-
 		//test = new IncaDecision();
 		//test.outputPMs("CF");
 		//test.outputPMs("ANN");
 		//test.outputPMs("TM");
 		//test.outputPMs("KNN");
 		//test.outputPMs("SVM");
-		test.outputPMs("ESMBL");
+		//test.outputPMs("ESMBL");
 	}//end main method - regression testing
-	
 }//end IncaDecision class
