@@ -67,6 +67,8 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	private JTextField text = new JTextField("(enter name)");
 	private JLabel countval = new JLabel(" 0 ");
 	private JCheckBox incrLrn = new JCheckBox("IncrLrn");
+	private static final String DATAPATH1 = "dataset\\";
+	private static final String DATAPATH2 = "dataset2\\";
 	private BufferedImage bi = null;
 	private Graphics2D g2d = null, g2d2 = null;
 	private Point2D.Float prevLoc = null;// previous cursor location
@@ -231,7 +233,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 	 * @param bi
 	 */
 	private void createImage(BufferedImage bi) { 	    
-		File file = new File("dataset\\image" + countSaves + ".png");
+		File file = new File("dataset2\\image" + countSaves + ".png");
 	    try {
 			ImageIO.write(bi, "png", file);
 		} catch (IOException e) {
@@ -257,7 +259,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 		BufferedImage image = null;
 		BufferedImage image2 = null;
 		try {
-			image = ImageIO.read(new File("dataset\\image"+countSaves+".png"));
+			image = ImageIO.read(new File("dataset2\\image"+countSaves+".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,7 +279,7 @@ public class TabletTraining extends PenAdapter implements ActionListener{
 			}
 		}//end convert color
 		
-		File file = new File("dataset\\"+text.getText()+countSaves+".png");
+		File file = new File("dataset2\\"+text.getText()+countSaves+".png");
 	    
 		try {
 			ImageIO.write(image2, "png", file);
