@@ -53,8 +53,9 @@ public class BPNNWeights {
 		int count = 0;
 		//hWeights
 		for(int i = 0; i < numInput; i++){
+			out.write(new String(""+i));
 			for(int j= 0; j < numHidden; j++){
-				out.write(new String(""+hWeights[j][i]));
+				out.write(new String(" "+hWeights[j][i]));
 				count++;
 				if(count > 6){
 					out.write(new String("\n"));
@@ -64,8 +65,9 @@ public class BPNNWeights {
 		}//end out loop
 		//oWeights
 		for(int i = 0; i < numHidden; i++){
+			out.write(new String(""+i));
 			for(int j= 0; j < numOutput; j++){
-				out.write(new String(""+hWeights[j][i]));
+				out.write(new String(" "+oWeights[j][i]));
 				count++;
 				if(count > 6){
 					out.write(new String("\n"));

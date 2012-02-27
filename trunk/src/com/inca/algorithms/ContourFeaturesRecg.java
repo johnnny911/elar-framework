@@ -234,6 +234,9 @@ public class ContourFeaturesRecg extends Algorithm {
 		int hist[] = new int[10];
 
 		vmin = 50; imin = -1;
+		//for(int lp = 0; lp < hist.length; lp++){
+			//hist[lp] = 0;
+		//}
 		hist[0] = hist[1] = hist[2] = hist[3] = hist[4] = 0;
 		hist[5] = hist[6] = hist[7] = hist[8] = hist[9] = 0;
 		for (i=0; i<dbSize; i++)
