@@ -1,30 +1,36 @@
 package com.inca.acceleglove;
 
-enum GesturePoint{
-	THUMB_X, THUMB_Y, THUMB_Z,
-	INDEX_X, INDEX_Y, INDEX_Z,
-	MIDDLE_X, MIDDLE_Y, MIDDLE_Z,
-	RING_X, RING_Y, RING_Z,
-	PITCH_X, PITCH_Y, PITCH_Z,
-	PA_X, PA_Y, PA_Z
-	}
+import java.util.HashMap;
+import java.util.Map;
 
 public class Gesture {
-	public static final int NUM_POINTS = 18;
-	private int[] data;
+	// Gestures
+	private static Map<Integer, Gesture> gestures;
+	public static final Gesture FU, 
+								THUMBSUP;
+	
+	static{
+		gestures = new HashMap<Integer, Gesture>();
 		
-	public Gesture(String str){
-		data = new int[NUM_POINTS];
-		String[] split = str.split(",");
-		for (int i=0; i<split.length; i++)
-			data[i] = Integer.parseInt(split[i]);
+		FU = new Gesture("FU", 0); gestures.put(FU.getKey(), FU);
+		THUMBSUP = new Gesture("THUMBSUP", 1); gestures.put(THUMBSUP.getKey(), THUMBSUP);
 	}
 	
-	public int get(GesturePoint gp){
-		return data[gp.ordinal()];
+	private Gesture(String name, int key){
+		this.name = name;
+		this.key = key;
 	}
 	
-	public int[] getData(){ 
-		return data; 
+	public static Gesture get(int key){
+		return gestures.get(key);
 	}
+	
+	private String name;
+	public int key;
+	
+	public String getName(){ return name; }
+	public int getKey() { return key; }
+	public String toString() { return name + " (" + getKey() + ")"; }
+	
+	
 }

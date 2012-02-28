@@ -1,15 +1,38 @@
 package com.inca.acceleglove;
 
+import java.util.Random;
+
 
 public class GloveInteraction{
 	
 	public static void main(String[] args){
 		AlgFrame af = new AlgFrame();
 		af.setVisible(true);
-		Gesture g = new Gesture("1,4,5,6,9,8," +
-								"3,6,2,1,4,2," +
-								"2,0,6,7,1,3");
-		int left = g.get(GesturePoint.THUMB_X);
+		GestureData fuGest = new GestureData("0,6,5,6,9,4," +
+											"3,6,2,4,3,4," +
+											"2,0,6,7,2,4");
+		GestureData tuGest = new GestureData("5,4,3,2,1," +
+											"5,2,7,1,4," +
+											"5,0,2,1,3");
+		NeuralNet nn = new NeuralNet();
+		for (int j=0; j<100; j++){
+		Random rand = new Random();
+			// Train FU
+			for (int i=0; i<GestureData.NUM_POINTS; i++){
+				if (i != 5 && i != 11 && i != 17)
+					fuGest.set(i, rand.nextInt(10) + 6);
+			}
+			nn.train(fuGest,  Gesture.FU);
+			// Train Thumbsup
+			for (int i=0; i<GestureData.NUM_POINTS; i++){
+				if (i != 0 && i != 5 && i != 10)
+					tuGest.set(i, rand.nextInt(10) + 6);
+			}
+			nn.train(tuGest, Gesture.THUMBSUP);
+		}
+		
+		System.out.println( Gesture.get(nn.predict(fuGest)) );
+		System.out.println( Gesture.get(nn.predict(tuGest)) );
 	}
 }
 	
