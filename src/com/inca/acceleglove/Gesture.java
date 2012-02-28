@@ -1,7 +1,12 @@
 package com.inca.acceleglove;
 
+import static com.googlecode.javacv.cpp.opencv_core.CV_32FC1;
+import static com.googlecode.javacv.cpp.opencv_core.cvCreateMat;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
 
 public class Gesture {
 	// Gestures
@@ -22,7 +27,15 @@ public class Gesture {
 	}
 	
 	public static Gesture get(int key){
-		return gestures.get(key);
+		return gestures.containsKey(key) ? gestures.get(key) : new Gesture("Unknown", key);
+	}
+	
+	public CvMat toCvMat(){
+		CvMat outputs = cvCreateMat(1, GestureData.NUM_GESTURES, CV_32FC1);
+		for (int i=0; i<GestureData.NUM_GESTURES; i++)
+			outputs.put(i, i == key ? 1 : 0);
+		
+		return outputs;
 	}
 	
 	private String name;
