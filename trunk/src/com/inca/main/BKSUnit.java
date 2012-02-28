@@ -1,13 +1,9 @@
 package com.inca.main;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Vector;
-
 
 public class BKSUnit {
 	private int[] guessNum;
-	private String tuple;
+	private String tuple = null;
 	
 	public BKSUnit(String guesses, int size){
 		this.tuple = guesses;
@@ -48,7 +44,16 @@ public class BKSUnit {
 	
 	private void addGuessNum(String correctAns){
 		if(tuple.contains(getValue(correctAns))){
-			guessNum[tuple.indexOf(getValue(correctAns))] += 1;
+			for(int i = 0; i < guessNum.length; i++){
+				if(tuple.charAt(i) == getValue(correctAns).toCharArray()[0]){
+					guessNum[i] += 1;
+				}
+			}
+			/*
+			for(int i = 0; i < guessNum.length; i++){
+				System.out.println(guessNum[i]);
+			}
+			*/
 		}
 		//otherwise tuple does not contain correct guess
 	}//end addGuessNum method
@@ -60,4 +65,10 @@ public class BKSUnit {
 		}
 		return total;
 	}//end getTotalSampleSize method
+	@Override
+	public String toString(){
+		return tuple;
+	}
+	
+	
 }//end BKSUnit class
