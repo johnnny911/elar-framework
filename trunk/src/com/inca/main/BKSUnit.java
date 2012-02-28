@@ -38,11 +38,11 @@ public class BKSUnit {
 	}//end getBestClass method
 	
 	private String getValue(String ans){
-		if(ans.equals("zero")) return "0"; if(ans.equals("one")) return "1";
-		if(ans.equals("two")) return "2";  if(ans.equals("three")) return "3";
-		if(ans.equals("four")) return "4"; if(ans.equals("five")) return "5";
-		if(ans.equals("six")) return "6";  if(ans.equals("seven")) return "7";
-		if(ans.equals("eight")) return "8";if(ans.equals("nine")) return "9";
+		if(ans.equals("zero"))  return "0"; if(ans.equals("one"))    return "1";
+		if(ans.equals("two"))   return "2";  if(ans.equals("three")) return "3";
+		if(ans.equals("four"))  return "4"; if(ans.equals("five"))   return "5";
+		if(ans.equals("six"))   return "6";  if(ans.equals("seven")) return "7";
+		if(ans.equals("eight")) return "8";if(ans.equals("nine"))    return "9";
 		return null;
 	}//end getValue method
 	

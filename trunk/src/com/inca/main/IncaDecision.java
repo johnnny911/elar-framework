@@ -171,18 +171,27 @@ public class IncaDecision {
 		//pm6.saveDatabase(pm6.getName()+".xml");
 		System.out.println("Choice: " + translateDecision(output.getDecision()));
 		*/
-		//BSK
-		trainBKS(a1, a3);
-		
 	}//end getIncaResult method
 	
-	private void trainBKS(AlgorithmAdaptor a1, AlgorithmAdaptor a2){
+	private void trainBKS(){
 		//BKS ------
+		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
+		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
+		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
+		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
 		String guesses = getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
 		//System.out.println(guesses);
 		bks.addTuple(guesses, 2);
 		bks.trainSpace(guesses, parseIn(unknownSymbol));
 	}//end trainBKS method
+	
+	private void testBKS(){
+		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
+		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
+		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
+		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
+		System.out.println(getBKSDecision(getAlgorithmGuess(a1)+getAlgorithmGuess(a2)));
+	}//end testBKS method
 	
 	private String getBKSDecision(String tuple){
 		String reString = bks.getGuess(tuple);
@@ -275,17 +284,29 @@ public class IncaDecision {
 		IncaDecision test = null;
 		test= new IncaDecision();
 	
-		//for(int i = 0; i < 5; i++){
-			for(int numInst = 1; numInst < 2; numInst++){
+		for(int i = 0; i < 1; i++){
+			for(int numInst = 1; numInst < 11; numInst++){
 				System.out.println("Instance: " + numInst);
-				for(int numCat = 0; numCat < 1; numCat++){
+				for(int numCat = 0; numCat < 10; numCat++){
 					test = new IncaDecision(getPrefixName(numCat)+
 											(numInst), false);
-					test.getIncaResult();
+					//test.getIncaResult();
+					test.trainBKS();
 				}
 			}
-		//}
+		}
 		
+		for(int numInst = 1; numInst < 2; numInst++){
+			System.out.println("Instance: " + numInst);
+			for(int numCat = 0; numCat < 10; numCat++){
+				test = new IncaDecision(getPrefixName(numCat)+
+										(numInst), false);
+				test.testBKS();
+			}
+		}
+		//test = new IncaDecision("two2", false);
+		//test.testBKS();
+		//System.out.println(test.getBKSDecision("00"));
 		//test = new IncaDecision();
 		//test.outputPMs("CF");
 		//test.outputPMs("ANN");
