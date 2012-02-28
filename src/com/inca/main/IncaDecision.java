@@ -44,7 +44,6 @@ public class IncaDecision {
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
 	private boolean incrLrn = false;
-	private BKS bks = new BKS();;
 	
 	/**
 	 * Constructor.
@@ -171,33 +170,42 @@ public class IncaDecision {
 		//pm6.saveDatabase(pm6.getName()+".xml");
 		System.out.println("Choice: " + translateDecision(output.getDecision()));
 		*/
+
+		//BSK
+		//trainBKS(a1, a3);
+		
 	}//end getIncaResult method
 	
-	private void trainBKS(){
+	private void trainBKS(BKS bks){
 		//BKS ------
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		String guesses = getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
+		String guesses = ""+getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
+		guesses = guesses.trim();
 		//System.out.println(guesses);
 		bks.addTuple(guesses, 2);
+		//bks.addTuple("00", 2);
+		//bks.addTuple("00", 2);
+		//System.out.println("table2: "+bks.getTuple(guesses).toString());
 		bks.trainSpace(guesses, parseIn(unknownSymbol));
 	}//end trainBKS method
 	
-	private void testBKS(){
+	private void testBKS(BKS bks){
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
 		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		System.out.println(getBKSDecision(getAlgorithmGuess(a1)+getAlgorithmGuess(a2)));
+		String guesses = getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
+		System.out.println("Tuple: "+guesses);
+		System.out.println("BKS: "+getBKSDecision(guesses, bks));
 	}//end testBKS method
 	
-	private String getBKSDecision(String tuple){
-		String reString = bks.getGuess(tuple);
-		return reString;
+	private String getBKSDecision(String tuple, BKS bks){
+		return bks.getGuess(tuple);
 	}
-	private void saveBKS(){
+	private void saveBKS(BKS bks){
 		bks.writeDatabase();
 	}
 
@@ -283,6 +291,7 @@ public class IncaDecision {
 	public static void main(String[] args){
 		IncaDecision test = null;
 		test= new IncaDecision();
+		BKS bks = new BKS();
 	
 		for(int i = 0; i < 1; i++){
 			for(int numInst = 1; numInst < 11; numInst++){
@@ -291,7 +300,7 @@ public class IncaDecision {
 					test = new IncaDecision(getPrefixName(numCat)+
 											(numInst), false);
 					//test.getIncaResult();
-					test.trainBKS();
+					test.trainBKS(bks);
 				}
 			}
 		}
@@ -301,7 +310,7 @@ public class IncaDecision {
 			for(int numCat = 0; numCat < 10; numCat++){
 				test = new IncaDecision(getPrefixName(numCat)+
 										(numInst), false);
-				test.testBKS();
+				test.testBKS(bks);
 			}
 		}
 		//test = new IncaDecision("two2", false);
