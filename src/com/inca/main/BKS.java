@@ -27,6 +27,9 @@ public class BKS {
 	}//end trainSpace method
 	
 	public String getGuess(String tuple){
+		if(bkstable.get(tuple) == null){
+			return "No Such Tuple";
+		}
 		return bkstable.get(tuple).getBestClass();
 	}//end getGuess method
 	//not correct--------
