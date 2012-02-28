@@ -15,7 +15,12 @@ public class BKS {
 	}//end BKS constructor
 	
 	public void addTuple(String guesses, int size){
-		bkstable.put(guesses, new BKSUnit(guesses, size));
+		if(bkstable.get(guesses) == null){
+			bkstable.put(guesses, new BKSUnit(guesses, size));
+			System.out.println("Input OK");
+		}else{//debugging only
+			System.out.println("Tuple Already exists.");
+		}
 	}//end addTuple method
 	
 	public BKSUnit getTuple(String tuple){
@@ -27,10 +32,10 @@ public class BKS {
 	}//end trainSpace method
 	
 	public String getGuess(String tuple){
-		if(bkstable.get(tuple) == null){
-			return "No Such Tuple";
+		if(bkstable.get(tuple) != null){
+			return bkstable.get(tuple).getBestClass();
 		}
-		return bkstable.get(tuple).getBestClass();
+		return "No Such Tuple in Table.";
 	}//end getGuess method
 	//not correct--------
 	public void writeDatabase(){
