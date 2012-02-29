@@ -42,12 +42,13 @@ public class KNearestNRecg extends Algorithm {
 	private CvMat trainingData;
 	private CvMat trainingCategories;
 	private int size;
-	private static final int K = 20;
+	private static final int K = 10;
 	private CvKNearest knn;
-	private static final int DEFAULT_TRAIN_SIZE = 10;
+	private static final int DEFAULT_TRAIN_SIZE = 25;
 	private static final int DEFAULT_NUM_CAT = 10;
-	private static final int DEFAULT_SIZE = 100;
-	private static final String PATH = "unknownset\\";
+	private static final int DEFAULT_SIZE = 50;
+	//private static final String PATH = "unknownset\\";
+	private static final String PATH = "dataset2\\";
 	
 	/**
 	 * 
@@ -262,7 +263,7 @@ public class KNearestNRecg extends Algorithm {
 		IplImage sourceImage = IplImage.create(500, 500, IPL_DEPTH_8U, 1);
 		IplImage parseImage = null;
 		String fileName;
-		String path = "dataset\\";
+		String path = "dataset2\\";
 		CvMat row = new CvMat();
 		CvMat data = new CvMat();
 		//get images for each class
@@ -353,8 +354,8 @@ public class KNearestNRecg extends Algorithm {
 		KNearestNRecg test = new KNearestNRecg(numSamples, numCategories, sz);
 		test.getData();
 		test.train();
-		System.out.println(test.recognizeSymbol("four1.png"));
-		/*
+		//System.out.println(test.recognizeSymbol("four1.png"));
+		
 		Alphabet symboltable = new Alphabet(numCategories);
 		for(int i = 0; i < numCategories; i++){
 			symboltable.addSymbol(test.getPrefixName(i), new Integer(i));
@@ -374,8 +375,8 @@ public class KNearestNRecg extends Algorithm {
 				}
 			}
 		}
-		*/
-		//new IncaDecision().outputPMs("KNN");
+		
+		new IncaDecision().outputPMs("KNN");
 	}//end main method
 	
 }//end KNearestNRecg class
