@@ -51,7 +51,8 @@ public class BPNNetRecg extends Algorithm {
 	private static final int DEFAULT_HIDDEN = 96;
 	private static final int DEFAULT_OUT = 10;
 	private static final String DEFAULT_DATA_OUT = "nnDataOut";
-	private static final String PATH = "unknownset\\";
+	//private static final String PATH = "unknownset\\";
+	private static final String PATH = "dataset2\\";
 	
 	/**
 	 * 
