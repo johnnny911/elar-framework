@@ -44,8 +44,8 @@ public class ContourFeaturesRecg extends Algorithm {
 	private String datafile;
 	private int x, y;
 	private boolean createDb = false;
-	//private static final String PATH = "unknownset\\";
-	private static final String PATH = "dataset2\\";
+	private static final String PATH = "unknownset\\";
+	//private static final String PATH = "dataset2\\";
 	
 	/**
 	 * 
