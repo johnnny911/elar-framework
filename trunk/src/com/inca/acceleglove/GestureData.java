@@ -18,7 +18,14 @@ public class GestureData {
 	public static final int NUM_POINTS = 18;
 	public static final int NUM_GESTURES = 5;
 	private double[] data;
-		
+	
+	public GestureData(String str, boolean t){
+		data = new double[NUM_POINTS];
+		String[] split = str.split(" ");//removed "," split - jhn
+		for (int i=0; i<split.length; i++)
+			data[i] = Integer.parseInt(split[i]);
+	}
+	
 	public GestureData(String str){
 		data = new double[NUM_POINTS];
 		String[] split = str.split(",");
