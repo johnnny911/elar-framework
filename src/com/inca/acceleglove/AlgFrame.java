@@ -1,4 +1,9 @@
 package com.inca.acceleglove;
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
+import com.idrt.Glove;
+import com.idrt.Glove.GloveIOException;
+import com.idrt.Handshape;
+import com.idrt.Handshape.HandshapeException;
 import com.inca.main.PerformanceMatrix;
 
 /**
@@ -6,11 +11,20 @@ import com.inca.main.PerformanceMatrix;
 * @author mark_desktop
 */
 public class AlgFrame extends javax.swing.JFrame {
-
+	//jhn addition
+	private Handshape hand;
+	private Glove glove;
+	//-----
    public AlgFrame() {
        initComponents();
    }
 
+   //jhn addition
+   public void setGestureObject(Handshape hand, Glove glove){
+	   this.hand = hand;
+	   this.glove = glove;
+   }//end setGestureObject method
+   //-------
    /**
     * This method is called from within the constructor to initialize the form.
     * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,6 +147,14 @@ public class AlgFrame extends javax.swing.JFrame {
        jPanel1.getAccessibleContext().setAccessibleName("AlgGuessPanel");
 
        getGesture.setText("Get Gesture");
+       
+       //jhn addition ---------
+       getGesture.addActionListener(new java.awt.event.ActionListener() {
+           public void actionPerformed(java.awt.event.ActionEvent evt) {
+               getGestureActionPerformed(evt);
+           }
+       });
+       //-------------------------
 
        gestureTable.setModel(new javax.swing.table.DefaultTableModel(
            new Object [][] {
@@ -266,8 +288,28 @@ public class AlgFrame extends javax.swing.JFrame {
 
    private void svmIncorrectActionPerformed(java.awt.event.ActionEvent evt) {                                         
        // TODO add your handling code here:
-   }                                        
-
+   }
+   //jhn addition - hi-jacked "Get Gesture" button------------
+   private void getGestureActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       // TODO add your handling code here:
+	   try {
+		hand = glove.captureHandshape();
+		GestureData hOut = new GestureData(hand.toString(), true);
+		CvMat hArry = hOut.toCvMat();
+		for(int i = 0; i < hOut.NUM_POINTS; i++){
+			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
+		}
+		
+	} catch (GloveIOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (HandshapeException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   System.out.println(hand.toString());
+   }
+   //------------------------
    private void runAllActionPerformed(java.awt.event.ActionEvent evt) {
        // TODO add your handling code here:
    }
