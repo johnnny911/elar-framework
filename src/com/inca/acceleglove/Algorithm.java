@@ -1,6 +1,6 @@
 package com.inca.acceleglove;
 
-public class Algorithm {
+public abstract class Algorithm {
 	private String name;
 	
 	Algorithm(String name){
@@ -10,5 +10,8 @@ public class Algorithm {
 	public String getName(){
 		return name;
 	}
+	
+	public abstract int predict(GestureData inputs);
+	public abstract void train(GestureData inputs, Gesture actual);
 
 }
