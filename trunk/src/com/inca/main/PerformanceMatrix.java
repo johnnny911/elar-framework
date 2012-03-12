@@ -29,9 +29,12 @@ import static com.googlecode.javacv.cpp.opencv_core.*;
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// Actual = row
+// Seen = column
 public class PerformanceMatrix {
 	private String name;
 	private CvMat pm;
+	private int size;
 	
 	/**
 	 * Constructor. Accepts the string name and size of the performance
@@ -39,6 +42,7 @@ public class PerformanceMatrix {
 	 * @param algName	String name of matrix
 	 */
 	public PerformanceMatrix(String algName, int size){
+		this.size = size;
 		this.pm = CvMat.create(size, size);
 		this.name = algName;
 		this.getDatabase(algName+".xml");
@@ -100,6 +104,16 @@ public class PerformanceMatrix {
 		}
 	}//end resize method
 	*/
+	
+	public double getConfidence(int sym){
+		double conf = 0.0;
+		for (int i=0; i<size; i++){
+			conf += pm.get(i, sym);
+		}
+		conf /= pm.get(sym, sym);
+		return conf;
+	}
+	
 	/**
 	 * Returns the integer size of the performance matrix.
 	 * @return	length		integer length
