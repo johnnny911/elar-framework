@@ -38,10 +38,10 @@ public class SupportVM extends Algorithm{
 	public void train(CvMat data, CvMat labels){
 		CvTermCriteria crit = new CvTermCriteria(1);
 		crit.max_iter(100);
-		crit.epsilon(0.0001);
+		crit.epsilon(0.000001);
 		crit.type(1);
 		CvSVMParams params = new CvSVMParams();
-		params.kernel_type(CvSVM.RBF);
+		params.kernel_type(CvSVM.LINEAR);
 		params.svm_type(CvSVM.C_SVC);
 		params.C(1);
 		params.term_crit(crit);
