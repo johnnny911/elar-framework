@@ -4,6 +4,19 @@
  */
 package com.inca.acceleglove;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.Scanner;
+
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
+import com.idrt.Glove;
+import com.idrt.Handshape;
+import static com.googlecode.javacv.cpp.opencv_core.*;
+import com.googlecode.javacv.cpp.opencv_ml.CvKNearest;
 import com.inca.main.PerformanceMatrix;
 
 /**
@@ -13,12 +26,20 @@ import com.inca.main.PerformanceMatrix;
 public class AlgFrame extends javax.swing.JFrame {
 	private GestureData data = null;
 	private PerformanceMatrix svmPm, nnPm;
+	private Handshape hand;
+	private Glove glove;
+	private int inc = 0;
 	
     /**
      * Creates new form NewJFrame
      */
     public AlgFrame() {
         initComponents();
+    }
+    
+    public void setGestureObject(Handshape hand, Glove glove){
+    	this.hand = hand;
+    	this.glove = glove;
     }
 
     /**
@@ -60,6 +81,13 @@ public class AlgFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         getGesture.setText("Get Gesture Reading");
+        
+        getGesture.addActionListener(new ActionListener(){
+        	@Override
+        	public void actionPerformed(ActionEvent evt){
+        		getGestureActionPerformed(evt);
+        	}
+        });
 
         gestureTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +168,7 @@ public class AlgFrame extends javax.swing.JFrame {
         jLabel3.setText("SVM");
 
         runSvm.setText("Run");
-        runSvm.setEnabled(false);
+        runSvm.setEnabled(true);
         runSvm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 runSvmActionPerformed(evt);
@@ -226,8 +254,9 @@ public class AlgFrame extends javax.swing.JFrame {
         jLabel5.setText("Actual Gesture: ");
 
         gestureSelectionList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
+            //String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "ok", "peace", "one", "stop", "thumbsup" };
+        	public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane3.setViewportView(gestureSelectionList);
@@ -339,9 +368,22 @@ public class AlgFrame extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void runSvmActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        if (data != null){
-        	
-        }
+       // if (data != null){
+    	try{
+    		hand = glove.captureHandshape();
+    		GestureData hOut = new GestureData(hand.toString());
+    		CvMat hArry = hOut.toCvMat1();
+    		for(int i = 0; i < hOut.NUM_POINTS; i++){
+    			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
+    		}
+    		SupportVM svm = new SupportVM();
+    		svm.train(getKnnData(), getClassLabels());
+    		int guess = svm.predict(hArry);
+    		System.out.println(Gesture.get(guess));
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}		
+        //}
     }                                      
 
     private void runAllActionPerformed(java.awt.event.ActionEvent evt) {                                       
@@ -352,17 +394,120 @@ public class AlgFrame extends javax.swing.JFrame {
     }                                      
 
     private void runNNActionPerformed(java.awt.event.ActionEvent evt) {                                      
-    	if (data != null){
-        	
-        }	
-    }                                     
-
-    private void recordButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    	if (data != null){
-        	
-        }
+    	//if (data != null){
+    	try{
+    		hand = glove.captureHandshape();
+    		GestureData hOut = new GestureData(hand.toString());
+    		CvMat hArry = hOut.toCvMat();
+    		for(int i = 0; i < hOut.NUM_POINTS; i++){
+    			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
+    		}
+    		KNearest knn = new KNearest(5);
+    		knn.train(getKnnData(), getClassLabels());
+    		int guess = knn.predict(hArry);
+    		System.out.println(Gesture.get(guess));
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}	
+        //}	
+    }             
+    
+    private CvMat getKnnData() throws Exception{
+    	CvMat data = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN, GestureData.NUM_POINTS, 
+    																	CV_32FC1);
+    	
+    	File inFile = new File("glovesetjhn");
+		Scanner in = new Scanner(inFile);
+		int line;
+		
+    	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH; i++){
+    		for(int j = 0; j < GestureData.NUM_POINTS; j++){
+    			if(in.hasNext()){
+    				line = in.nextInt();
+    				data.put(i, j, line);
+    				//System.out.println(line);
+    			}
+    		}
+    	}
+    	in.close();
+    	
+    	inFile = new File("glovesetmark");
+		in = new Scanner(inFile);
+		line=0;
+    	for(int i = GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH*2; i++){
+    		for(int j = 0; j < GestureData.NUM_POINTS; j++){
+    			if(in.hasNext()){
+    				line = in.nextInt();
+    				data.put(i, j, line);
+    				//System.out.println(line);
+    			}
+    		}
+    	}
+    	in.close();
+    	
+    	return data;
     }
     
+
+    
+    private CvMat getClassLabels(){
+    	CvMat labels = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN, 1, CV_32FC1);
+    	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN; i++){
+    		if(i>=0 && i<49)	labels.put(i, Gesture.OK.getKey());
+    		if(i>=49 && i<99)	labels.put(i, Gesture.PEACE.getKey());
+    		if(i>=99 && i<149)	labels.put(i, Gesture.ONE.getKey());
+    		if(i>=149 && i<199)	labels.put(i, Gesture.STOP.getKey());
+    		if(i>=199 && i<249)	labels.put(i, Gesture.THUMBSUP.getKey());
+    		
+    		if(i>=249 && i<299)	labels.put(i, Gesture.OK.getKey());
+    		if(i>=299 && i<349)	labels.put(i, Gesture.PEACE.getKey());
+    		if(i>=349 && i<399)	labels.put(i, Gesture.ONE.getKey());
+    		if(i>=399 && i<449)	labels.put(i, Gesture.STOP.getKey());
+    		if(i>=449 && i<499)	labels.put(i, Gesture.THUMBSUP.getKey());	
+    	}
+    	return labels;
+    }
+
+    private void recordButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	//if (data != null){
+    	inc++;
+    	try{
+    		hand = glove.captureHandshape();
+    		GestureData hOut = new GestureData(hand.toString());
+    		CvMat hArry = hOut.toCvMat();
+    		for(int i = 0; i < hOut.NUM_POINTS; i++){
+    			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
+    		}
+    		writeOutput(hand.toString(), "gloveset");
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	System.out.println(inc);
+        //}
+    }
+    
+    private void getGestureActionPerformed(ActionEvent evt){
+    	try{
+    		hand = glove.captureHandshape();
+    		GestureData hOut = new GestureData(hand.toString());
+    		CvMat hArry = hOut.toCvMat();
+    		for(int i = 0; i < hOut.NUM_POINTS; i++){
+    			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
+    		}
+    		
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    }
+    
+    private void writeOutput(String data, String fileName)throws Exception{
+    	FileWriter stream = new FileWriter(fileName, true);
+    	BufferedWriter out = new BufferedWriter(stream);
+    	out.write(data);
+    	out.write(" \n");
+    	out.close();
+    	stream.close();
+    }
 
     /**
      * @param args the command line arguments
