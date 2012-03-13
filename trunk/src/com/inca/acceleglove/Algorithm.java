@@ -1,5 +1,7 @@
 package com.inca.acceleglove;
 
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
+
 public abstract class Algorithm {
 	private String name;
 	
@@ -11,7 +13,7 @@ public abstract class Algorithm {
 		return name;
 	}
 	
-	public abstract int predict(GestureData inputs);
+	public abstract int predict(CvMat inputs);
 	public abstract void train(GestureData inputs, Gesture actual);
 
 }

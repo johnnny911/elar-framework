@@ -7,20 +7,26 @@ import com.googlecode.javacv.cpp.opencv_ml.CvKNearest;
 
 public class KNearest extends Algorithm{
 	private CvKNearest knn;
+	private int k;
 	
-	KNearest(){
+	KNearest(int k){
 		super("K Nearest Neighbor");
-		CvMat count = cvCreateMat(1, 2, CV_32SC1);
-		count.put(0, GestureData.NUM_POINTS);
-		count.put(1, GestureData.NUM_GESTURES);
-		CvMat inputs = cvCreateMat(1, GestureData.NUM_POINTS, CV_32FC1);
-		CvMat outputs = cvCreateMat(1, GestureData.NUM_POINTS, CV_32FC1);
-		knn = new CvKNearest(inputs, outputs, null, false, 10);
+		//CvMat count = cvCreateMat(1, 2, CV_32SC1);
+		//count.put(0, GestureData.NUM_POINTS);
+		//count.put(1, GestureData.NUM_GESTURES);
+		//int size = GestureData.NUM_GESTURES * GestureData.NUM_POINTS;
+		this.k = k;
+		//CvMat inputs = cvCreateMat(size, GestureData.NUM_POINTS, CV_32FC1);
+		//CvMat outputs = cvCreateMat(size, 1, CV_32FC1);
+		//knn = new CvKNearest(inputs, outputs, null, false, 10);
 	}
 	
-	public int predict(GestureData inputs){
-		CvMat outputs = cvCreateMat(1, GestureData.NUM_GESTURES, CV_32FC1);
-		float f = knn.find_nearest(inputs.toCvMat(), 10, null, null, outputs, null);
+	
+	
+	public int predict(CvMat inputs/*GestureData inputs*/){
+		CvMat outputs = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_POINTS, 
+																	k, CV_32FC1);
+		float f = knn.find_nearest(inputs, k, null, null, outputs, null);
 		
 		int max = 0;
 		double maxConf = 0.0;
@@ -30,12 +36,18 @@ public class KNearest extends Algorithm{
 				max = i;
 			}
 		}
-		return max;
+		return (int)f;
 	}
 	
 	public void train(GestureData inputs, Gesture actual){
 		CvMat zero = cvCreateMat(1,1, CV_32SC1);
 		zero.put(0, 0);
-		knn.train(inputs.toCvMat(), actual.toCvMat(), zero, false, 32, false);
+		//knn.train(inputs.toCvMat(), actual.toCvMat(), zero, false, 32, false);
+		knn = new CvKNearest(inputs.toCvMat(), actual.toCvMat(), null, false, k);
+	}
+	
+	public void train(CvMat data, CvMat labels){
+		CvMat zero = cvCreateMat(1,1, CV_32SC1);
+		knn = new CvKNearest(data, labels, null, false, k);
 	}
 }

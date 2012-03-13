@@ -1,6 +1,7 @@
 package com.inca.acceleglove;
 import static com.googlecode.javacv.cpp.opencv_core.*;
 
+import com.googlecode.javacv.cpp.opencv_core.CvMat;
 import com.googlecode.javacv.cpp.opencv_ml.CvANN_MLP;
 import com.googlecode.javacv.cpp.opencv_ml.*;
 
@@ -40,5 +41,11 @@ public class NeuralNet extends Algorithm{
 	
 	public void save(String filename){
 		ann.save(filename, "");
+	}
+
+	@Override
+	public int predict(CvMat inputs) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

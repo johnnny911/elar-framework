@@ -17,6 +17,8 @@ enum GesturePoint{
 public class GestureData {
 	public static final int NUM_POINTS = 18;
 	public static final int NUM_GESTURES = 5;
+	public static final int NUM_GESTURES_TRAIN_EACH = 50;
+	public static final int NUM_GESTURES_TRAIN = NUM_GESTURES_TRAIN_EACH*2;
 	private double[] data;
 
 	public GestureData(String str){
@@ -39,10 +41,18 @@ public class GestureData {
 	}
 	
 	public CvMat toCvMat(){
+		CvMat inputs = cvCreateMat(NUM_POINTS*NUM_GESTURES, data.length, CV_32FC1);
+		for (int i=0; i<data.length; i++){
+			inputs.put(i, data[i]);
+		}
+		return inputs;
+	}
+	public CvMat toCvMat1(){
 		CvMat inputs = cvCreateMat(1, data.length, CV_32FC1);
 		for (int i=0; i<data.length; i++){
 			inputs.put(i, data[i]);
 		}
 		return inputs;
 	}
+	
 }
