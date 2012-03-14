@@ -12,6 +12,7 @@ import com.googlecode.javacv.cpp.opencv_ml.CvSVMParams;
 
 public class SupportVM extends Algorithm{
 	private CvSVM svmClassifier;
+	private boolean train = false;
 	
 	public SupportVM(){
 		super("SVM");
@@ -46,7 +47,10 @@ public class SupportVM extends Algorithm{
 		params.C(1);
 		params.term_crit(crit);
 		svmClassifier = new CvSVM();
-		svmClassifier.train(data, labels, null, null, params);
+		if(!train){
+			svmClassifier.train(data, labels, null, null, params);
+			train = true;
+		}
 	}
 
 
