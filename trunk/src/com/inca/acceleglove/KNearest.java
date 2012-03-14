@@ -8,6 +8,7 @@ import com.googlecode.javacv.cpp.opencv_ml.CvKNearest;
 public class KNearest extends Algorithm{
 	private CvKNearest knn;
 	private int k;
+	private boolean train = false;
 	
 	KNearest(int k){
 		super("K Nearest Neighbor");
@@ -47,6 +48,10 @@ public class KNearest extends Algorithm{
 	}
 	
 	public void train(CvMat data, CvMat labels){
-		knn = new CvKNearest(data, labels, null, false, k);
+		if(!train){
+			knn = new CvKNearest(data, labels, null, false, k);
+			train = true;
+		}
+
 	}
 }
