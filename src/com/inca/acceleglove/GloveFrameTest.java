@@ -31,7 +31,7 @@ public class GloveFrameTest implements GloveConnectionListener{
 	public static void main(String[] args){
 		try {
 			GloveFrameTest test = new GloveFrameTest();
-			test.crossVal(1);
+			//test.crossVal(1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,10 +58,11 @@ public class GloveFrameTest implements GloveConnectionListener{
 		knn.train(frame.getKnnData("gloveset"), frame.getClassLabels());
 		svm.train(frame.getKnnData("gloveset"), frame.getClassLabels());
 		
-		for(int i = 0; i < 51; i++){
-			for(int j = 0; j < 10; j++){
-				run = new IncaDecision(null, null, null, null, run.getPrefixName(j));
-				hOut = new GestureData(getData("glovesetjhn", i));
+		
+		for(int i = 0; i < 10; i++){
+			for(int j = 0; j < 51; j++){
+				run = new IncaDecision(null, null, null, null, run.getPrefixName(i));
+				hOut = new GestureData(getData("gloveset1", j));
 				hArry = hOut.toCvMat();
 				
 				run.updatePM(pm1, ""+knn.predict(hArry));

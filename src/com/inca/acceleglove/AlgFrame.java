@@ -382,7 +382,7 @@ public class AlgFrame extends javax.swing.JFrame {
     			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
     		}
     		
-    		svm.train(getKnnData(), getClassLabels());
+    		svm.train(getKnnData("gloveset"), getClassLabels());
     		int guess = svm.predict(hArry);
     		System.out.println(Gesture.get(guess));
     	}catch(Exception e){
@@ -408,7 +408,7 @@ public class AlgFrame extends javax.swing.JFrame {
     			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
     		}
     		
-    		knn.train(getKnnData(), getClassLabels());
+    		knn.train(getKnnData("gloveset"), getClassLabels());
     		int guess = knn.predict(hArry);
     		System.out.println(Gesture.get(guess));
     	}catch(Exception e){
@@ -417,11 +417,11 @@ public class AlgFrame extends javax.swing.JFrame {
         //}	
     }             
     
-    private CvMat getKnnData() throws Exception{
+    protected CvMat getKnnData(String filename) throws Exception{
     	CvMat data = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH, 
     							GestureData.NUM_POINTS, CV_32FC1);
     	
-    	File inFile = new File("gloveset");
+    	File inFile = new File(filename);
 		Scanner in = new Scanner(inFile);
 		int line;
 		
@@ -453,9 +453,9 @@ public class AlgFrame extends javax.swing.JFrame {
     
 
     
-    private CvMat getClassLabels(){
+    protected CvMat getClassLabels(){
     	CvMat labels = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH, 1, CV_32FC1);
-    	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN; i++){
+    	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH; i++){
     		if(i>=0 && i<49)	labels.put(i, Gesture.ZERO.getKey());
     		if(i>=49 && i<99)	labels.put(i, Gesture.ONE.getKey());
     		if(i>=99 && i<149)	labels.put(i, Gesture.TWO.getKey());
@@ -502,7 +502,7 @@ public class AlgFrame extends javax.swing.JFrame {
     	}
     }
     
-    private void writeOutput(String data, String fileName)throws Exception{
+    protected void writeOutput(String data, String fileName)throws Exception{
     	FileWriter stream = new FileWriter(fileName, true);
     	BufferedWriter out = new BufferedWriter(stream);
     	out.write(data);
