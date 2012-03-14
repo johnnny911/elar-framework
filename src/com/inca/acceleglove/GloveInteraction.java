@@ -30,7 +30,7 @@ public class GloveInteraction{
 					tuGest.set(i, rand.nextInt(10) + 6);
 			}
 			//nn.train(tuGest, Gesture.THUMBSUP);
-			knn.train(tuGest, Gesture.THUMBSUP);
+			//knn.train(tuGest, Gesture.THUMBSUP);
 		}
 		
 		//System.out.println( Gesture.get(knn.predict(fuGest)) );

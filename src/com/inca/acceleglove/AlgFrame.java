@@ -255,7 +255,9 @@ public class AlgFrame extends javax.swing.JFrame {
 
         gestureSelectionList.setModel(new javax.swing.AbstractListModel() {
             //String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            String[] strings = { "ok", "peace", "one", "stop", "thumbsup" };
+            //String[] strings = { "ok", "peace", "one", "stop", "thumbsup" };
+        	String[] strings = { "one", "two", "three", "four", "five", "six", "seven",
+        						 "eight", "nine"};
         	public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -413,10 +415,10 @@ public class AlgFrame extends javax.swing.JFrame {
     }             
     
     private CvMat getKnnData() throws Exception{
-    	CvMat data = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN, GestureData.NUM_POINTS, 
-    																	CV_32FC1);
+    	CvMat data = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH, 
+    							GestureData.NUM_POINTS, CV_32FC1);
     	
-    	File inFile = new File("glovesetjhn");
+    	File inFile = new File("gloveset");
 		Scanner in = new Scanner(inFile);
 		int line;
 		
@@ -425,12 +427,11 @@ public class AlgFrame extends javax.swing.JFrame {
     			if(in.hasNext()){
     				line = in.nextInt();
     				data.put(i, j, line);
-    				//System.out.println(line);
     			}
     		}
     	}
     	in.close();
-    	
+    	/*
     	inFile = new File("glovesetmark");
 		in = new Scanner(inFile);
 		line=0;
@@ -439,31 +440,29 @@ public class AlgFrame extends javax.swing.JFrame {
     			if(in.hasNext()){
     				line = in.nextInt();
     				data.put(i, j, line);
-    				//System.out.println(line);
     			}
     		}
     	}
     	in.close();
-    	
+    	*/
     	return data;
     }
     
 
     
     private CvMat getClassLabels(){
-    	CvMat labels = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN, 1, CV_32FC1);
+    	CvMat labels = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH, 1, CV_32FC1);
     	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN; i++){
-    		if(i>=0 && i<49)	labels.put(i, Gesture.OK.getKey());
-    		if(i>=49 && i<99)	labels.put(i, Gesture.PEACE.getKey());
-    		if(i>=99 && i<149)	labels.put(i, Gesture.ONE.getKey());
-    		if(i>=149 && i<199)	labels.put(i, Gesture.STOP.getKey());
-    		if(i>=199 && i<249)	labels.put(i, Gesture.THUMBSUP.getKey());
-    		
-    		if(i>=249 && i<299)	labels.put(i, Gesture.OK.getKey());
-    		if(i>=299 && i<349)	labels.put(i, Gesture.PEACE.getKey());
-    		if(i>=349 && i<399)	labels.put(i, Gesture.ONE.getKey());
-    		if(i>=399 && i<449)	labels.put(i, Gesture.STOP.getKey());
-    		if(i>=449 && i<499)	labels.put(i, Gesture.THUMBSUP.getKey());	
+    		if(i>=0 && i<49)	labels.put(i, Gesture.ZERO.getKey());
+    		if(i>=49 && i<99)	labels.put(i, Gesture.ONE.getKey());
+    		if(i>=99 && i<149)	labels.put(i, Gesture.TWO.getKey());
+    		if(i>=149 && i<199)	labels.put(i, Gesture.THREE.getKey());
+    		if(i>=199 && i<249)	labels.put(i, Gesture.FOUR.getKey());
+    		if(i>=249 && i<299)	labels.put(i, Gesture.FIVE.getKey());
+    		if(i>=299 && i<349)	labels.put(i, Gesture.SIX.getKey());
+    		if(i>=349 && i<399)	labels.put(i, Gesture.SEVEN.getKey());
+    		if(i>=399 && i<449)	labels.put(i, Gesture.EIGHT.getKey());	
+    		if(i>=449 && i<499)	labels.put(i, Gesture.NINE.getKey());
     	}
     	return labels;
     }
