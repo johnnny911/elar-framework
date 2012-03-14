@@ -44,6 +44,7 @@ public class IncaDecision {
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
 	private boolean incrLrn = false;
+	private int missedRec = 0;
 	
 	/**
 	 * Constructor.
@@ -91,6 +92,9 @@ public class IncaDecision {
 		if(!guess.equalsIgnoreCase("No Such Tuple in Table.")){
 			pm.recordRecNum(symboltable.getSymbolValue(parseIn(unknownSymbol)).intValue()
 			 ,symboltable.getSymbolValue(getPrefixName(Integer.parseInt(guess))).intValue());
+		}else{
+			//for BKS analysis
+			missedRec++;
 		}
 	}//end buildPerfmatrices method
 	
@@ -309,6 +313,7 @@ public class IncaDecision {
 				test.testBKS(bks);
 			}
 		}
+		System.out.println("BKS Missed: "+missedRec);
 		*/
 		test.outputPMs("CF");
 		test.outputPMs("ANN");
