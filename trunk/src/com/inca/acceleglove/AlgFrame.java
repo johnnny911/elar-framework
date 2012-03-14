@@ -392,10 +392,10 @@ public class AlgFrame extends javax.swing.JFrame {
     }                                      
 
     private void runAllActionPerformed(java.awt.event.ActionEvent evt) {                                       
-    	if (data != null){
+    	//if (data != null){
         	runSvmActionPerformed(evt);
         	runNNActionPerformed(evt);
-        }
+       // }
     }                                      
 
     private void runNNActionPerformed(java.awt.event.ActionEvent evt) {                                      
