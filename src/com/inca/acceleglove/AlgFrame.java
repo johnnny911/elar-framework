@@ -29,6 +29,9 @@ public class AlgFrame extends javax.swing.JFrame {
 	private Handshape hand;
 	private Glove glove;
 	private int inc = 0;
+	private SupportVM svm = new SupportVM();
+	private static final int K = 5;
+	private KNearest knn = new KNearest(K);
 	
     /**
      * Creates new form NewJFrame
@@ -378,7 +381,7 @@ public class AlgFrame extends javax.swing.JFrame {
     		for(int i = 0; i < hOut.NUM_POINTS; i++){
     			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
     		}
-    		SupportVM svm = new SupportVM();
+    		
     		svm.train(getKnnData(), getClassLabels());
     		int guess = svm.predict(hArry);
     		System.out.println(Gesture.get(guess));
@@ -404,7 +407,7 @@ public class AlgFrame extends javax.swing.JFrame {
     		for(int i = 0; i < hOut.NUM_POINTS; i++){
     			gestureTable.getModel().setValueAt(hArry.get(i), 0, i);
     		}
-    		KNearest knn = new KNearest(5);
+    		
     		knn.train(getKnnData(), getClassLabels());
     		int guess = knn.predict(hArry);
     		System.out.println(Gesture.get(guess));
