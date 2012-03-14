@@ -47,7 +47,6 @@ public class KNearest extends Algorithm{
 	}
 	
 	public void train(CvMat data, CvMat labels){
-		CvMat zero = cvCreateMat(1,1, CV_32SC1);
 		knn = new CvKNearest(data, labels, null, false, k);
 	}
 }
