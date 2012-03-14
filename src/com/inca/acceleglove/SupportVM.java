@@ -13,9 +13,20 @@ import com.googlecode.javacv.cpp.opencv_ml.CvSVMParams;
 public class SupportVM extends Algorithm{
 	private CvSVM svmClassifier;
 	private boolean train = false;
+	private CvSVMParams params;
 	
 	public SupportVM(){
 		super("SVM");
+		CvTermCriteria crit = new CvTermCriteria(1);
+		crit.max_iter(100);
+		crit.epsilon(0.0001);
+		crit.type(1);
+		params = new CvSVMParams();
+		params.kernel_type(CvSVM.LINEAR);
+		params.svm_type(CvSVM.C_SVC);
+		params.C(1);
+		params.term_crit(crit);
+		svmClassifier = new CvSVM();
 
 	}
 	
@@ -37,16 +48,7 @@ public class SupportVM extends Algorithm{
 	}
 	
 	public void train(CvMat data, CvMat labels){
-		CvTermCriteria crit = new CvTermCriteria(1);
-		crit.max_iter(100);
-		crit.epsilon(0.0001);
-		crit.type(1);
-		CvSVMParams params = new CvSVMParams();
-		params.kernel_type(CvSVM.LINEAR);
-		params.svm_type(CvSVM.C_SVC);
-		params.C(1);
-		params.term_crit(crit);
-		svmClassifier = new CvSVM();
+		
 		if(!train){
 			svmClassifier.train(data, labels, null, null, params);
 			train = true;
