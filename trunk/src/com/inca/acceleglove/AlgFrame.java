@@ -259,7 +259,7 @@ public class AlgFrame extends javax.swing.JFrame {
         gestureSelectionList.setModel(new javax.swing.AbstractListModel() {
             //String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             //String[] strings = { "ok", "peace", "one", "stop", "thumbsup" };
-        	String[] strings = { "one", "two", "three", "four", "five", "six", "seven",
+        	String[] strings = { "zero", "one", "two", "three", "four", "five", "six", "seven",
         						 "eight", "nine"};
         	public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
