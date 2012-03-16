@@ -1,6 +1,9 @@
 //IncaDecision.java
 package com.inca.main;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +45,7 @@ public class IncaDecision {
 	private PerformanceMatrix pm1, pm2, pm3, pm4, pm5;
 	private Alphabet symboltable;
 	private final int SIZE = 10; //regression testing only
-	public String unknownSymbol;
+	private String unknownSymbol;
 	private boolean incrLrn = false;
 	private int missedRec = 0;
 	
@@ -88,7 +91,7 @@ public class IncaDecision {
 	 * matrix.
 	 */
 	public void updatePM(PerformanceMatrix pm, String guess){
-		System.out.println(guess);
+		//System.out.println(guess);
 		if(!guess.equalsIgnoreCase("No Such Tuple in Table.")){
 			pm.recordRecNum(symboltable.getSymbolValue(parseIn(unknownSymbol)).intValue()
 			 ,symboltable.getSymbolValue(getPrefixName(Integer.parseInt(guess))).intValue());
@@ -119,9 +122,10 @@ public class IncaDecision {
 		
 		//Contour Features
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
-		//pm1.getDatabase("CF.xml");
-		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		System.out.println("CF: "+getAlgorithmGuess(a1));
+		pm1.getDatabase("CFcv1.xml");
+		//pm1 = new PerformanceMatrix("CFcv5", symboltable.getSize());
+		writeOutput("CF: "+getAlgorithmGuess(a1)+" ");
+		//System.out.println("CF: "+getAlgorithmGuess(a1));
 		//updatePM(pm1, getAlgorithmGuess(a1));
 		//pm1.saveDatabase(pm1.getName()+".xml");
 		/*
@@ -132,16 +136,17 @@ public class IncaDecision {
 		//System.out.println("KNN: "+getAlgorithmGuess(a2));
 		updatePM(pm2, getAlgorithmGuess(a2));
 		pm2.saveDatabase(pm2.getName()+".xml");
-		*/
+	*/
 		//Artificial Neural Network
 		AlgorithmAdaptor a3 = new AlgorithmAdaptor(new BPNNetRecg());
-		//pm3.getDatabase("ANN.xml");
-		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		System.out.println("ANN: "+getAlgorithmGuess(a3));
+		pm3.getDatabase("ANNcv1.xml");
+		//pm3 = new PerformanceMatrix("ANNcv5", symboltable.getSize());
+		writeOutput("ANN: "+getAlgorithmGuess(a1)+" ");
+		//System.out.println("ANN: "+getAlgorithmGuess(a3));
 		//updatePM(pm3, getAlgorithmGuess(a3));
 		//pm3.saveDatabase(pm3.getName()+".xml");
 		
-		
+		/*
 		AlgorithmAdaptor a4 = new AlgorithmAdaptor(new TemplateMatching());
 		pm4 = new PerformanceMatrix("TM", symboltable.getSize());
 //		System.out.println("TM: "+getAlgorithmGuess(a4));
@@ -153,7 +158,7 @@ public class IncaDecision {
 //		System.out.println("SVM: "+getAlgorithmGuess(a5));
 		//updatePM(pm5, getAlgorithmGuess(a5));
 		//pm5.saveDatabase(pm5.getName()+".xml");
-		
+		*/
 		IncaQuery q1 = new IncaQuery(getAlgorithmGuess(a1), pm1, symboltable);
 	//	IncaQuery q2 = new IncaQuery(getAlgorithmGuess(a2), pm2, symboltable);
 		IncaQuery q3 = new IncaQuery(getAlgorithmGuess(a3), pm3, symboltable);
@@ -173,11 +178,13 @@ public class IncaDecision {
 		//cvSet.add(cv4);
 		//cvSet.add(cv5);
 		//ensemble performance tracking
-		PerformanceMatrix pm6 = new PerformanceMatrix("ESMBL", symboltable.getSize());
+		//PerformanceMatrix pm6 = new PerformanceMatrix("ESMBLdsc", symboltable.getSize());
 		Ensemble output = new Ensemble(cvSet);
 		//updatePM(pm6, ""+output.getDecision());
 		//pm6.saveDatabase(pm6.getName()+".xml");
-		System.out.println("Choice: " + translateDecision(output.getDecision()));
+		int out = output.getDecision();
+		writeOutput("Choice: " + translateDecision(out)+" " +out+"\n");
+		//System.out.println("Choice: " + translateDecision(output.getDecision()));
 		
 
 		//BSK
@@ -185,14 +192,29 @@ public class IncaDecision {
 		
 	}//end getIncaResult method
 	
+	private void writeOutput(String guess){
+		FileWriter stream;
+		try {
+			stream = new FileWriter("algensmbl.txt", true);
+			BufferedWriter out = new BufferedWriter(stream);
+			out.write(""+guess);
+			out.close();
+			stream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private void trainBKS(BKS bks){
 		//BKS ------
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
 		//pm1 = new PerformanceMatrix("CF", symboltable.getSize());
-		pm1.getDatabase("CF.xml");
+		pm1.getDatabase("CFcv1.xml");
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
 		//pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
-		pm3.getDatabase("ANN");
+		pm3.getDatabase("ANNcv1.xml");
 	
 		String guesses = ""+getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
 		guesses = guesses.trim();
@@ -202,9 +224,9 @@ public class IncaDecision {
 	
 	private void testBKS(BKS bks){
 		AlgorithmAdaptor a1 = new AlgorithmAdaptor(new ContourFeaturesRecg());
-		pm1 = new PerformanceMatrix("CF", symboltable.getSize());
+		//pm1 = new PerformanceMatrix("CF", symboltable.getSize());
 		AlgorithmAdaptor a2 = new AlgorithmAdaptor(new BPNNetRecg());
-		pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
+		//pm3 = new PerformanceMatrix("ANN", symboltable.getSize());
 		String guesses = getAlgorithmGuess(a1)+getAlgorithmGuess(a2);
 		System.out.println("Tuple: "+guesses);
 		//System.out.println("BKS: "+getBKSDecision(guesses, bks));
@@ -239,6 +261,7 @@ public class IncaDecision {
 			System.out.println(cv.getElement(i));
 		}
 	}//end outputCV method
+	
 	
 	//testing only-------
 	public void outputPMs(){
@@ -288,23 +311,25 @@ public class IncaDecision {
 		PerformanceMatrix pm1 = new PerformanceMatrix("CF", 10);
 		PerformanceMatrix pm2 = new PerformanceMatrix("KNN", 10);
 		PerformanceMatrix pm3 = new PerformanceMatrix("ANN", 10);
-		PerformanceMatrix pm4 = new PerformanceMatrix("BKS", 10);
+		PerformanceMatrix pm4 = new PerformanceMatrix("BKS2", 10);
 		
-		for(int i = 0; i < 1; i++){
-			for(int numInst = 26; numInst < 51; numInst++){
+		//for(int i = 0; i < 1; i++){
+			for(int numInst = 1; numInst < 51; numInst++){
 				System.out.println("Instance: " + numInst);
 				for(int numCat = 0; numCat < 10; numCat++){
 					test = new IncaDecision(pm1, pm2, pm3,pm4,
 									getPrefixName(numCat)+(numInst));
+					test.writeOutput(getPrefixName(numCat)+"\n");
+					//test = new IncaDecision(getPrefixName(numCat)+numInst, false);
 					test.getIncaResult();
 					//test.trainBKS(bks);
 				}
 			}
-		}
+		//}
 		
+		
+		//pm4.getDatabase("BKS.xml");
 		/*
-		pm4.getDatabase("BKS.xml");
-		
 		for(int numInst = 1; numInst < 51; numInst++){
 			System.out.println("Instance: " + numInst);
 			for(int numCat = 0; numCat < 10; numCat++){
@@ -315,12 +340,15 @@ public class IncaDecision {
 		}
 		System.out.println("BKS Missed: "+missedRec);
 		*/
-		test.outputPMs("CF");
-		test.outputPMs("ANN");
+		//test.outputPMs("CFcv1");
+		//test.outputPMs("CFcv2");
+		//test.outputPMs("CFcv3");
+		//test.outputPMs("CFcv4");
+		//test.outputPMs("CFcv5");
 		//test.outputPMs("TM");
 		//test.outputPMs("KNN");
 		//test.outputPMs("SVM");
-		//test.outputPMs("ESMBL");
-		//test.outputPMs("BKS");
+		//test.outputPMs("ESMBLdsc");
+		//test.outputPMs("BKS2");
 	}//end main method - regression testing
 }//end IncaDecision class
