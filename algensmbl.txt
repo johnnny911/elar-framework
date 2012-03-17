@@ -1,0 +1,1000 @@
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 1 ANN: 1 Choice: one 1
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 0 ANN: 0 Choice: zero 0
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 1 ANN: 1 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 0 ANN: 0 Choice: zero 0
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 1 ANN: 1 Choice: one 1
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 0 ANN: 0 Choice: zero 0
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 2 ANN: 2 Choice: two 2
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 5 ANN: 5 Choice: five 5
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 0 ANN: 0 Choice: zero 0
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 5 ANN: 5 Choice: five 5
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 1 ANN: 1 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 1 ANN: 1 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 0 ANN: 0 Choice: zero 0
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 5 ANN: 5 Choice: five 5
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 1 ANN: 1 Choice: one 1
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 3 ANN: 3 Choice: three 3
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 2 ANN: 2 Choice: two 2
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: four 4
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 1 ANN: 1 Choice: one 1
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 1 ANN: 1 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: nine 9
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 1 ANN: 1 Choice: one 1
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 4 ANN: 4 Choice: four 4
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 1 ANN: 1 Choice: four 4
+six
+CF: 5 ANN: 5 Choice: five 5
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 4 ANN: 4 Choice: four 4
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 0 ANN: 0 Choice: zero 0
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 4 ANN: 4 Choice: four 4
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 0 ANN: 0 Choice: zero 0
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 2 ANN: 2 Choice: two 2
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 8 ANN: 8 Choice: eight 8
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 3 ANN: 3 Choice: three 3
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: zero 0
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: nine 9
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 1 ANN: 1 Choice: one 1
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: four 4
+two
+CF: 2 ANN: 2 Choice: two 2
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 0 ANN: 0 Choice: zero 0
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 5 ANN: 5 Choice: five 5
+seven
+CF: 2 ANN: 2 Choice: two 2
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 0 ANN: 0 Choice: nine 9
+zero
+CF: 0 ANN: 0 Choice: zero 0
+one
+CF: 1 ANN: 1 Choice: one 1
+two
+CF: 3 ANN: 3 Choice: three 3
+three
+CF: 3 ANN: 3 Choice: three 3
+four
+CF: 4 ANN: 4 Choice: four 4
+five
+CF: 5 ANN: 5 Choice: five 5
+six
+CF: 6 ANN: 6 Choice: six 6
+seven
+CF: 7 ANN: 7 Choice: seven 7
+eight
+CF: 8 ANN: 8 Choice: eight 8
+nine
+CF: 9 ANN: 9 Choice: nine 9
