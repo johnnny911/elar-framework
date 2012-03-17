@@ -7,5 +7,12 @@
 	<classpathentry kind="lib" path="extJars/javacv-windows-x86.jar"/>
 	<classpathentry kind="lib" path="extJars/javacv.jar"/>
 	<classpathentry kind="lib" path="extJars/jpen-2.jar"/>
+	<classpathentry kind="lib" path="extJars/AcceleGloveSDK-Win.jar"/>
+	<classpathentry kind="lib" path="extJars/AcceleGloveSDK.jar"/>
+	<classpathentry kind="lib" path="extJars/h2-1.1.115.jar"/>
+	<classpathentry kind="lib" path="extJars/jahmm-0.6.1.jar"/>
+	<classpathentry kind="lib" path="extJars/registry.jar"/>
+	<classpathentry kind="lib" path="extJars/RXTXcomm.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
