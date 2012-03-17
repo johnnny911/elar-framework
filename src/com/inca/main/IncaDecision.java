@@ -43,7 +43,7 @@ import static com.googlecode.javacv.cpp.opencv_core.*;
  */
 public class IncaDecision {
 	private PerformanceMatrix pm1, pm2, pm3, pm4, pm5;
-	private Alphabet symboltable;
+	public Alphabet symboltable;
 	private final int SIZE = 10; //regression testing only
 	private String unknownSymbol;
 	private boolean incrLrn = false;
@@ -192,7 +192,7 @@ public class IncaDecision {
 		
 	}//end getIncaResult method
 	
-	private void writeOutput(String guess){
+	public void writeOutput(String guess){
 		FileWriter stream;
 		try {
 			stream = new FileWriter("algensmbl.txt", true);
@@ -296,7 +296,7 @@ public class IncaDecision {
 		return "null";
 	}//end getPrefixName method
 	
-	private String translateDecision(int decision){
+	public String translateDecision(int decision){
 		String out = new String();
 		out = getPrefixName(decision);
 		return out;
