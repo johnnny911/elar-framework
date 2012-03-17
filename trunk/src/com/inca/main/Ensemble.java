@@ -78,8 +78,8 @@ public class Ensemble {
 		try{
 			List<CvMat> pms = new ArrayList<CvMat>();
 			
-			CvMat ann = new CvMat(cvLoad("ANN.xml")); pms.add(ann);
-			CvMat cf = new CvMat(cvLoad("CF.xml"));   pms.add(cf);
+			CvMat ann = new CvMat(cvLoad("ANNcv1.xml")); pms.add(ann);
+			CvMat cf = new CvMat(cvLoad("CFcv1.xml"));   pms.add(cf);
 			Map<Integer,List<ConfidenceVector>>  symbolToCvs= new HashMap<Integer,List<ConfidenceVector>>();
 			System.out.println("train");
 			
@@ -139,9 +139,11 @@ public class Ensemble {
 	 */
 	public int getDecision(){
 		int avgComb = averagingCombiner();
-		System.out.println("averaging combiner says " + avgComb);
-		System.out.println("decision template says " + decisionTemplateCombiner());
-		System.out.println("demp shaf says " + dempsterShaferCombiner());
+		//int dtc = decisionTemplateCombiner();
+		//int dsc = dempsterShaferCombiner();
+		//System.out.println("averaging combiner says " + avgComb);
+		//System.out.println("decision template says " + decisionTemplateCombiner());
+		//System.out.println("demp shaf says " + dempsterShaferCombiner());
 		return avgComb;
 	}//end getDecision method
 
