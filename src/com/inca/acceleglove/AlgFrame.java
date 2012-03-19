@@ -456,6 +456,19 @@ public class AlgFrame extends javax.swing.JFrame {
     protected CvMat getClassLabels(){
     	CvMat labels = cvCreateMat(GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH, 1, CV_32FC1);
     	for(int i = 0; i < GestureData.NUM_GESTURES*GestureData.NUM_GESTURES_TRAIN_EACH; i++){
+    		
+    		if(i>=0 && i<149)	labels.put(i, Gesture.ZERO.getKey());
+    		if(i>=149 && i<299)	labels.put(i, Gesture.ONE.getKey());
+    		if(i>=299 && i<449)	labels.put(i, Gesture.TWO.getKey());
+    		if(i>=449 && i<599)	labels.put(i, Gesture.THREE.getKey());
+    		if(i>=599 && i<749)	labels.put(i, Gesture.FOUR.getKey());
+    		if(i>=749 && i<899)	labels.put(i, Gesture.FIVE.getKey());
+    		if(i>=899 && i<1049)	labels.put(i, Gesture.SIX.getKey());
+    		if(i>=1049 && i<1199)	labels.put(i, Gesture.SEVEN.getKey());
+    		if(i>=1199 && i<1349)	labels.put(i, Gesture.EIGHT.getKey());	
+    		if(i>=1349 && i<1499)	labels.put(i, Gesture.NINE.getKey());
+    		
+    		/* out for cv testing
     		if(i>=0 && i<49)	labels.put(i, Gesture.ZERO.getKey());
     		if(i>=49 && i<99)	labels.put(i, Gesture.ONE.getKey());
     		if(i>=99 && i<149)	labels.put(i, Gesture.TWO.getKey());
@@ -465,7 +478,7 @@ public class AlgFrame extends javax.swing.JFrame {
     		if(i>=299 && i<349)	labels.put(i, Gesture.SIX.getKey());
     		if(i>=349 && i<399)	labels.put(i, Gesture.SEVEN.getKey());
     		if(i>=399 && i<449)	labels.put(i, Gesture.EIGHT.getKey());	
-    		if(i>=449 && i<499)	labels.put(i, Gesture.NINE.getKey());
+    		if(i>=449 && i<499)	labels.put(i, Gesture.NINE.getKey());*/
     	}
     	return labels;
     }

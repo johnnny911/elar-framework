@@ -101,7 +101,7 @@ public class IncaDecision {
 		}
 	}//end buildPerfmatrices method
 	
-	private String parseIn(String input){
+	public String parseIn(String input){
 		//System.out.println(input);
 		if(input.substring(0, 3).equalsIgnoreCase("zer")) return "zero";
 		if(input.substring(0, 3).equalsIgnoreCase("one")) return "one";

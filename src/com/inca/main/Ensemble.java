@@ -78,8 +78,8 @@ public class Ensemble {
 		try{
 			List<CvMat> pms = new ArrayList<CvMat>();
 			
-			CvMat ann = new CvMat(cvLoad("ANNcv1.xml")); pms.add(ann);
-			CvMat cf = new CvMat(cvLoad("CFcv1.xml"));   pms.add(cf);
+			CvMat ann = new CvMat(cvLoad("GlKNNcv1.xml")); pms.add(ann);
+			CvMat cf = new CvMat(cvLoad("GlSVMcv1.xml"));   pms.add(cf);
 			Map<Integer,List<ConfidenceVector>>  symbolToCvs= new HashMap<Integer,List<ConfidenceVector>>();
 			System.out.println("train");
 			
@@ -138,13 +138,13 @@ public class Ensemble {
 	 * @return 	integer guess mapping to symbol in alphabet.
 	 */
 	public int getDecision(){
-		int avgComb = averagingCombiner();
+		//int avgComb = averagingCombiner();
 		//int dtc = decisionTemplateCombiner();
-		//int dsc = dempsterShaferCombiner();
+		int dsc = dempsterShaferCombiner();
 		//System.out.println("averaging combiner says " + avgComb);
 		//System.out.println("decision template says " + decisionTemplateCombiner());
 		//System.out.println("demp shaf says " + dempsterShaferCombiner());
-		return avgComb;
+		return dsc;
 	}//end getDecision method
 
 	
