@@ -17,8 +17,9 @@ enum GesturePoint{
 public class GestureData {
 	public static final int NUM_POINTS = 18;
 	public static final int NUM_GESTURES = 10;
-	public static final int NUM_GESTURES_TRAIN_EACH = 50;
+	public static final int NUM_GESTURES_TRAIN_EACH = 150;//from 50 to 150 for cv tests
 	public static final int NUM_GESTURES_TRAIN = NUM_GESTURES_TRAIN_EACH*2;
+	
 	private double[] data;
 
 	public GestureData(String str){
