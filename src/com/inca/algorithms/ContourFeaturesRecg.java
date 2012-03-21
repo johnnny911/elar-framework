@@ -46,7 +46,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	private boolean createDb = false;
 	//private static final String PATH = "unknownset\\";
 	//private static final String PATH = "dataset2\\";
-	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\set1\\";
+	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\set2\\";
 	/**
 	 * 
 	 */
@@ -534,9 +534,9 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @throws Exception
 	 */
 	private void writeDatabase(int [] bits) throws Exception{
-		FileWriter stream = new FileWriter("cfDatabasecv11.db", true);
+		FileWriter stream = new FileWriter("cfDatabasecv12.db", true);
 		BufferedWriter out = new BufferedWriter(stream);
-		String iter = "0 ";
+		String iter = "9 ";
 		out.write(iter);
 		for(int i = 0; i < bits.length; i++){
 			out.write(new String(""+bits[i]));
@@ -624,16 +624,19 @@ public class ContourFeaturesRecg extends Algorithm {
 	
 	public static void main(String[] args){
 		ContourFeaturesRecg test = new ContourFeaturesRecg();
+		String chk = null;
 		try {
 			test.populateDatabase("prof.db", 1000, 50);
 			test.setCreateDB(true);
 			for(int i = 1; i < 151; i++){
-				test.recognizeSymbol("zero"+i+".png");
+				chk = ""+i;
+				test.recognizeSymbol("nine"+i+".png");
 			}
 			
 			//System.out.println("Symbol: "+ test.getSymbol());
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println(chk);
 		}
 	}//end main method
 	
