@@ -78,8 +78,8 @@ public class Ensemble {
 		try{
 			List<CvMat> pms = new ArrayList<CvMat>();
 			
-			CvMat ann = new CvMat(cvLoad("GlKNNcv1.xml")); pms.add(ann);
-			CvMat cf = new CvMat(cvLoad("GlSVMcv1.xml"));   pms.add(cf);
+			CvMat ann = new CvMat(cvLoad("ANNcv21.xml")); pms.add(ann);
+			CvMat cf = new CvMat(cvLoad("CFcv12.xml"));   pms.add(cf);
 			Map<Integer,List<ConfidenceVector>>  symbolToCvs= new HashMap<Integer,List<ConfidenceVector>>();
 			System.out.println("train");
 			

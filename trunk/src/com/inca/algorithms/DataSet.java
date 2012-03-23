@@ -35,14 +35,14 @@ public class DataSet {
 		DataSet set = new DataSet();
 								  
 		//dset1
-		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set1", 
-				"D:\\Programming\\datasets2\\image_cv\\adilset", 0);
-		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set1", 
-		"D:\\Programming\\datasets2\\image_cv\\hansset", 50);
-		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set1", 
-		"D:\\Programming\\datasets2\\image_cv\\bojanset", 101);
+		set.createImageDataset("E:\\Programming\\datasets2\\image_cv\\set1", 
+				"E:\\Programming\\datasets2\\image_cv\\adilset", 0);
+		set.createImageDataset("E:\\Programming\\datasets2\\image_cv\\set1", 
+		"E:\\Programming\\datasets2\\image_cv\\hansset", 50);
+		set.createImageDataset("E:\\Programming\\datasets2\\image_cv\\set1", 
+		"E:\\Programming\\datasets2\\image_cv\\bojanset", 100);
 		//adilset
-		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set2", 
+		/*set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set2", 
 				"D:\\Programming\\datasets2\\image_cv\\dataset1", 0);
 		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set2", 
 		"D:\\Programming\\datasets2\\image_cv\\hansset", 50);
@@ -61,6 +61,6 @@ public class DataSet {
 		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set4", 
 		"D:\\Programming\\datasets2\\image_cv\\adilset", 50);
 		set.createImageDataset("D:\\Programming\\datasets2\\image_cv\\set4", 
-		"D:\\Programming\\datasets2\\image_cv\\hansset", 101);
+		"D:\\Programming\\datasets2\\image_cv\\hansset", 101);*/
 	}
 }
