@@ -3,6 +3,8 @@ package com.inca.algorithms;
 import static com.googlecode.javacv.cpp.opencv_core.IPL_DEPTH_8U;
 import static com.googlecode.javacv.cpp.opencv_core.cvGet2D;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
+import com.inca.main.IncaDecision;
+
 import static com.googlecode.javacv.cpp.opencv_highgui.*;
 
 import java.io.BufferedWriter;
@@ -46,7 +48,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	private boolean createDb = false;
 	//private static final String PATH = "unknownset\\";
 	//private static final String PATH = "dataset2\\";
-	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\set2\\";
+	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\dataset1\\";
 	/**
 	 * 
 	 */
@@ -279,7 +281,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @param sourceImage
 	 * @return
 	 */
-	private int recognize(IplImage sourceImage){
+	private int recognize(IplImage sourceImage){//int itr
 		int j,nr, wi;
 		int lmax,lmin,rmax,rmin;
 		int a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16,a17;
@@ -533,15 +535,15 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @param bits
 	 * @throws Exception
 	 */
-	private void writeDatabase(int [] bits) throws Exception{
-		FileWriter stream = new FileWriter("cfDatabasecv12.db", true);
+	private void writeDatabase(int [] bits) throws Exception{//int itr
+		FileWriter stream = new FileWriter("cfDatabasecv14.db", true);
 		BufferedWriter out = new BufferedWriter(stream);
-		String iter = "9 ";
-		out.write(iter);
+		//String iter = ""+itr+" ";
+		//out.write(iter);
 		for(int i = 0; i < bits.length; i++){
 			out.write(new String(""+bits[i]));
 		}
-		out.write("\n");
+		out.write(new String("\n"));
 		out.close();
 		stream.close();
 	}
@@ -550,7 +552,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @param file
 	 * @throws Exception
 	 */
-	public String recognizeSymbol(String file) throws Exception{
+	public String recognizeSymbol(String file) throws Exception{//int itr
 		IplImage sourceImage = cvLoadImage(""+PATH+file);
 		if(sourceImage == null){
 			throw(new Exception("Source Image Null."));
@@ -562,7 +564,7 @@ public class ContourFeaturesRecg extends Algorithm {
 										sourceImage.height(), IPL_DEPTH_8U, 1);
 			bxImage = out.bBox(sourceImage);
 			
-			symbol = recognize(bxImage);
+			symbol = recognize(bxImage);//int itr
 			
 		}else{
 			throw(new Exception("Database = null."));
@@ -577,7 +579,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	 * @param sizeY
 	 * @throws Exception
 	 */
-	public void populateDatabase(String dataFile, int sizeX, int sizeY) 
+	public void popDB(String dataFile, int sizeX, int sizeY) 
 	throws Exception{
 		database = new int[sizeX][sizeY];
 		dbv = new int [sizeX];
@@ -586,14 +588,16 @@ public class ContourFeaturesRecg extends Algorithm {
 		Scanner in = new Scanner(inFile);
 		String line = null;
 		
-		for (int i=0; i<1000; i++)
+		for (int i=0; i<sizeX; i++)
 		{
 			if(in.hasNext()){
 				line = in.next();
+				//System.out.println(line);
 				dbv[i] = Integer.parseInt(line);
 		
 				line = in.next();
-				for (int j=0; j<48; j++)
+				//System.out.println(line);
+				for (int j=0; j<48; j++)//48
 				{
 					k = Integer.parseInt(Character.toString(line.charAt(j)));
 					if( k == 1){
@@ -617,36 +621,40 @@ public class ContourFeaturesRecg extends Algorithm {
 	public int getSymbol(){
 		return this.symbol;
 	}//end getSymbol method
+	
+	@Override
+	public void populateDatabase() throws Exception {
+		popDB("cfDatabasecv11.db", 1500, 50);
+	}
+	
+	private void setCreateDB(boolean set){
+		this.createDb = set;
+	}
+	
 	/**
 	 * Main method used for regression testing.
 	 * @param args
 	 */
-	
+	/*
 	public static void main(String[] args){
 		ContourFeaturesRecg test = new ContourFeaturesRecg();
+		IncaDecision run = new IncaDecision();
 		String chk = null;
 		try {
-			test.populateDatabase("prof.db", 1000, 50);
+			test.popDB("prof.db", 1500, 50);
 			test.setCreateDB(true);
-			for(int i = 1; i < 151; i++){
-				chk = ""+i;
-				test.recognizeSymbol("nine"+i+".png");
-			}
+			//for(int j = 0; j < 10; j++){
+			int j = 9;
+				for(int i = 1; i < 151; i++){
+					chk = ""+i;
+					test.recognizeSymbol(run.getPrefixName(j)+i+".png", j);
+				}
+			//}
 			
 			//System.out.println("Symbol: "+ test.getSymbol());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(chk);
 		}
-	}//end main method
-	
-
-	@Override
-	public void populateDatabase() throws Exception {
-		populateDatabase("cfDatabase.db", 1000, 50);
-	}
-	
-	private void setCreateDB(boolean set){
-		this.createDb = set;
-	}
+	}//end main method*/
 }//end ContourFeatruesRecg class

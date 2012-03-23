@@ -311,7 +311,8 @@ public class BNNConvert {
 	}//end writeOutputFile method
 	
 	public void createDatabase(String imageFile, int numCat)throws Exception{
-		String path = "dataset\\";
+		//String path = "dataset\\";
+		String path = "D:\\Programming\\datasets2\\image_cv\\set4\\";
 		im = cvLoadImage(path+imageFile);
 		IplImage mods = new IplImage();
 		IplImage mods2 = new IplImage();
@@ -326,7 +327,7 @@ public class BNNConvert {
 	}
 	
 	private void writeOutputFile2(IplImage outImage, int numCat) throws Exception{
-		FileWriter stream = new FileWriter("nnDatabase", true);
+		FileWriter stream = new FileWriter("nnDatabasecv14", true);
 		BufferedWriter out = new BufferedWriter(stream);
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 6; j++){
@@ -359,7 +360,7 @@ public class BNNConvert {
 	 * Main for regression testing
 	 * @param args
 	 */
-	/*
+	
 	public static void main(String[] args){
 		BNNConvert test = new BNNConvert(new IplImage());
 		try{
@@ -368,7 +369,7 @@ public class BNNConvert {
 			//test.setOutputFile("nnDataout.txt");
 			//test.convertImage();
 			
-			for(int numInst = 1; numInst < 52; numInst++){
+			for(int numInst = 145; numInst < 151; numInst++){
 				System.out.println("Instance: " + numInst);
 				for(int numCat = 0; numCat < 10; numCat++){
 					test.createDatabase(getPrefixName(numCat)+(numInst)+".png",
@@ -378,14 +379,6 @@ public class BNNConvert {
 			}
 			
 			
-			for(int numCat = 1; numCat < 10; numCat++){
-				System.out.println("cat: " + numCat);
-				for(int numInst = 30; numInst < 52; numInst++){
-					test.createDatabase(getPrefixName(numCat)+(numInst)+".png",
-							numCat);
-					
-				}
-			}
 			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
@@ -394,5 +387,5 @@ public class BNNConvert {
 		//terminate
 		System.exit(0);
 	}//end main method
-	*/
+	
 }//end BNNConvert class
