@@ -53,7 +53,7 @@ public class BPNNetRecg extends Algorithm {
 	private static final String DEFAULT_DATA_OUT = "nnDataOut";
 	//private static final String PATH = "unknownset\\";
 	//private static final String PATH = "dataset2\\";
-	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\dataset1\\";
+	private static final String PATH = "E:\\Programming\\datasets2\\image_cv\\dataset1\\";
 	/**
 	 * 
 	 * @param numIn

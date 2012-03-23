@@ -48,7 +48,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	private boolean createDb = false;
 	//private static final String PATH = "unknownset\\";
 	//private static final String PATH = "dataset2\\";
-	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\dataset1\\";
+	private static final String PATH = "E:\\Programming\\datasets2\\image_cv\\adilset\\";
 	/**
 	 * 
 	 */
@@ -624,7 +624,7 @@ public class ContourFeaturesRecg extends Algorithm {
 	
 	@Override
 	public void populateDatabase() throws Exception {
-		popDB("cfDatabasecv11.db", 1500, 50);
+		popDB("cfDatabasecv12.db", 1500, 50);
 	}
 	
 	private void setCreateDB(boolean set){
