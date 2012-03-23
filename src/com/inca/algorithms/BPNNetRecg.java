@@ -51,9 +51,9 @@ public class BPNNetRecg extends Algorithm {
 	private static final int DEFAULT_HIDDEN = 96;
 	private static final int DEFAULT_OUT = 10;
 	private static final String DEFAULT_DATA_OUT = "nnDataOut";
-	private static final String PATH = "unknownset\\";
+	//private static final String PATH = "unknownset\\";
 	//private static final String PATH = "dataset2\\";
-	
+	private static final String PATH = "D:\\Programming\\datasets2\\image_cv\\dataset1\\";
 	/**
 	 * 
 	 * @param numIn
@@ -397,7 +397,7 @@ public class BPNNetRecg extends Algorithm {
 	}
 	
 	public void populateDatabase()throws Exception{
-		this.trainNet("nnDatabase2.txt");
+		this.trainNet("nnDatabasecv11");
 	}
 	/**
 	 * Main method used for regression testing.
