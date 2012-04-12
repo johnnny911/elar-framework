@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.inca.jpen
+OpenIDE-Module-Localizing-Bundle: org/inca/jpen/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
