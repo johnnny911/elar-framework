@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.inca.javacv
+OpenIDE-Module-Localizing-Bundle: org/inca/javacv/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
