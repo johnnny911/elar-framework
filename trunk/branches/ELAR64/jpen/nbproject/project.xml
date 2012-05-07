@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>org.elar.lib.jpen</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>jpen</package>
+                <package>jpen.demo</package>
+                <package>jpen.demo.inspect</package>
+                <package>jpen.event</package>
+                <package>jpen.internal</package>
+                <package>jpen.internal.filter</package>
+                <package>jpen.owner</package>
+                <package>jpen.owner.awt</package>
+                <package>jpen.owner.multiAwt</package>
+                <package>jpen.provider</package>
+                <package>jpen.provider.osx</package>
+                <package>jpen.provider.system</package>
+                <package>jpen.provider.wintab</package>
+                <package>jpen.provider.xinput</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/jpen-2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jpen-2.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
