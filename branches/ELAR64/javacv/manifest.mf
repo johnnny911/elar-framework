@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.elar.lib.javacv
+OpenIDE-Module-Localizing-Bundle: org/elar/lib/javacv/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
