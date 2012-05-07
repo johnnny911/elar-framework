@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.elar.lib.acceleglove
+OpenIDE-Module-Localizing-Bundle: org/elar/lib/acceleglove/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
