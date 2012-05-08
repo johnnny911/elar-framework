@@ -1,6 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @author James Neilan
+ * @version	1.0.0
+ * Thesis and Research Work.
+ *
+    Copyright (C) 2012	James Neilan
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.elar.main;
 
@@ -36,23 +53,26 @@ preferredID = "TabletTopComponent")
     "HINT_TabletTopComponent=This is a Tablet window"
 })
 public final class TabletTopComponent extends TopComponent {
-
+    
+    /**
+     * Constructor for top component.
+     */
     public TabletTopComponent() {
         initComponents();
         //tablet init
         initFrame();
         setName(Bundle.CTL_TabletTopComponent());
         setToolTipText(Bundle.HINT_TabletTopComponent());
-    }
+    }//end constructor method
     /**
-     * 
+     * Initializes the JINternalFrame for handwritten symbol capture.
      */
     private void initFrame(){
         jInternalFrame1.setTitle("ELAR Tablet Draw Frame");
         jInternalFrame1.setSize(new Dimension(DrawFrame.WIDTH, DrawFrame.HEIGHT));
         elarFrame.setPanel(jPanel2, jTextField1);
         jInternalFrame1.setContentPane(elarFrame.getPanel());
-    }
+    }//end initFrame method
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,7 +313,10 @@ public final class TabletTopComponent extends TopComponent {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Recognize method button.
+     * @param evt button event
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String[] compAns = new String[3];
         String ensAns = new String();
@@ -306,7 +329,10 @@ public final class TabletTopComponent extends TopComponent {
         jTextField5.setText(ensAns);
         populateCVtable();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    /**
+     * Clear method. Clears output text fields.
+     * @param evt button event
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         elarFrame.clear();
         jTextField6.setText("");
@@ -314,7 +340,10 @@ public final class TabletTopComponent extends TopComponent {
         jTextField7.setText("");
         jTextField5.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Displays performance charts using JFreeChart API calls.
+     * @param evt button event
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         BarChart charts = new BarChart("CFcv11", "ANNcv11", null,
@@ -344,6 +373,7 @@ public final class TabletTopComponent extends TopComponent {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+    //Tablet recognition class.
     private DrawFrame elarFrame = new DrawFrame();
     @Override
     public void componentOpened() {
@@ -367,7 +397,7 @@ public final class TabletTopComponent extends TopComponent {
         // TODO read your settings according to their version
     }
     /**
-     * 
+     * Creates charts for performance display. Algorithms and ensembles.
      * @param charts 
      */
     private void showCharts(BarChart charts){
@@ -406,7 +436,7 @@ public final class TabletTopComponent extends TopComponent {
         }
     }//end showCharts method
     /**
-     * 
+     * Populates the CV table for CV display.
      */
     private void populateCVtable(){
         
@@ -417,4 +447,4 @@ public final class TabletTopComponent extends TopComponent {
             }
         }
     }//end populateCVtable method
-}
+}//end TabletTopComponent Class
